@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="ca.footeware.java.texty3" path="/ca/footeware/java/texty3/">
+    <key name="wrap-mode" type="b">
+      <default>true</default>
+      <summary>Wrap mode</summary>
+      <description>Whether to wrap text in the text view</description>
+    </key>
+    <key name="window-height" type="i">
+      <default>600</default>
+      <summary>Window height</summary>
+      <description>The window height in pixels.</description>
+    </key>
+    <key name="window-width" type="i">
+      <default>1000</default>
+      <summary>Window width</summary>
+      <description>The window width in pixels.</description>
+    </key>
+    <key name="font-size" type="i">
+      <default>18</default>
+      <summary>Font size</summary>
+      <description>The font size in pixels.</description>
+    </key>
+  </schema>
+</schemalist>
