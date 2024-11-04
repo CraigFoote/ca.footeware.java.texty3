@@ -14,20 +14,22 @@ import org.gnome.gio.Menu;
 import org.gnome.gio.MenuItem;
 import org.gnome.gio.Settings;
 import org.gnome.gio.SimpleAction;
+import org.gnome.glib.Variant;
 import org.gnome.gtk.Box;
 import org.gnome.gtk.FileDialog;
+import org.gnome.gtk.MenuButton;
 import org.gnome.gtk.Orientation;
 import org.gnome.gtk.ScrolledWindow;
 import org.gnome.gtk.TextIter;
 import org.gnome.gtk.TextView;
+import org.gnome.gtk.WrapMode;
 
 import io.github.jwharm.javagi.base.GErrorException;
 import io.github.jwharm.javagi.base.Out;
-import io.github.jwharm.javagi.gobject.annotations.InstanceInit;
 
 /**
  * texty3's window with menus and text view.
- * 
+ *
  * @author Footeware.ca
  *
  */
@@ -35,28 +37,28 @@ public class Texty3Window extends ApplicationWindow {
 
 	private File file;
 	private boolean modified = false;
+	private Settings settings;
 	private TextView textView;
 	private WindowTitle windowTitle;
-	private Settings settings;
-
-	@InstanceInit
-	public void init() {
-		settings = new Settings("ca.footeware.java.texty3");
-	}
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param app {@link Texty3} the enclosing application
 	 */
 	public Texty3Window(Texty3 app) {
 		super(app);
 
-		setDefaultSize(600, 400);
+		settings = new Settings("ca.footeware.java.texty3");
+
+		// set window sized based on last resize
+		int width = settings.getInt("window-width");
+		int height = settings.getInt("window-height");
+		setDefaultSize(width, height);
 
 		// connect to window size change signals
-		onNotify("default-width", (paramSpec) -> onWindowSizeChange());
-		onNotify("default-height", (paramSpec) -> onWindowSizeChange());
+		onNotify("default-width", paramSpec -> onWindowSizeChange());
+		onNotify("default-height", paramSpec -> onWindowSizeChange());
 
 		createActions();
 
@@ -68,6 +70,14 @@ public class Texty3Window extends ApplicationWindow {
 
 		textView = new TextView();
 		textView.setMonospace(true);
+		// set initial state
+		boolean wrapMode = settings.getBoolean("wrap-mode");
+		textView.setWrapMode(wrapMode ? WrapMode.WORD : WrapMode.NONE);
+
+		textView.getBuffer().onModifiedChanged(() -> {
+			modified = textView.getBuffer().getModified();
+			updateWindowTitle();
+		});
 
 		var scrolledWindow = new ScrolledWindow();
 		scrolledWindow.setChild(textView);
@@ -77,23 +87,11 @@ public class Texty3Window extends ApplicationWindow {
 		windowTitle = new WindowTitle("texty3", "a minimal text editor");
 		headerBar.setTitleWidget(windowTitle);
 
+		createHamburgerMenu(headerBar);
+
 		setContent(vbox);
 
-		textView.getBuffer().onModifiedChanged(() -> {
-			modified = textView.getBuffer().getModified();
-			updateWindowTitle();
-		});
-
 		textView.grabFocus();
-	}
-
-	private void onWindowSizeChange() {
-		System.err.println("onWindowSizeChange");
-		int width = getWidth();
-        int height = getHeight();
-        // save window size to prefs
-		settings.setInt("window-width", width);
-		settings.setInt("window-height", height);
 	}
 
 	private void clear() {
@@ -108,37 +106,58 @@ public class Texty3Window extends ApplicationWindow {
 	private void createActions() {
 		// Save action
 		var saveAction = new SimpleAction("save", null);
-		saveAction.onActivate((SimpleAction.ActivateCallback) (parameter) -> onSaveAction());
+		saveAction.onActivate((SimpleAction.ActivateCallback) parameter -> onSaveAction());
 		addAction(saveAction);
 
 		// New action
 		var newAction = new SimpleAction("new", null);
-		newAction.onActivate((SimpleAction.ActivateCallback) (parameter) -> onNewAction());
+		newAction.onActivate((SimpleAction.ActivateCallback) parameter -> onNewAction());
 		getApplication().setAccelsForAction("win.new", new String[] { "<primary>n" });
 		addAction(newAction);
 
 		// Open action
 		var openAction = new SimpleAction("open", null);
-		openAction.onActivate((SimpleAction.ActivateCallback) (parameter) -> onOpenAction());
+		openAction.onActivate((SimpleAction.ActivateCallback) parameter -> onOpenAction());
 		getApplication().setAccelsForAction("win.open", new String[] { "<primary>o" });
 		addAction(openAction);
 
 		// Save As action
 		var saveAsAction = new SimpleAction("save-as", null);
-		saveAsAction.onActivate((SimpleAction.ActivateCallback) (parameter) -> onSaveAsAction());
+		saveAsAction.onActivate((SimpleAction.ActivateCallback) parameter -> onSaveAsAction());
 		getApplication().setAccelsForAction("win.save-as", new String[] { "<primary><shift>s" });
 		addAction(saveAsAction);
 
 		// New Window action
 		var newWindowAction = new SimpleAction("new-win", null);
-		newWindowAction.onActivate((SimpleAction.ActivateCallback) (parameter) -> onNewWindowAction());
+		newWindowAction.onActivate((SimpleAction.ActivateCallback) parameter -> onNewWindowAction());
 		getApplication().setAccelsForAction("app.new-win", new String[] { "<primary><shift>n" });
 		getApplication().addAction(newWindowAction);
+
+		// Toggle Wrap action with initial state
+		var toggleWrapAction = SimpleAction.stateful("toggle-wrap", null,
+				new Variant("b", settings.getBoolean("wrap-mode")));
+		toggleWrapAction.onActivate(this::onToggleWrapAction);
+		getApplication().setAccelsForAction("win.toggle-wrap", new String[] { "<primary><shift>w" });
+		addAction(toggleWrapAction);
+	}
+
+	private void createHamburgerMenu(HeaderBar headerBar) {
+		MenuButton hamburgerButton = new MenuButton();
+		hamburgerButton.setIconName("open-menu-symbolic");
+
+		var hamburgerMenu = new Menu();
+
+		var primaryMenu = new Menu();
+		primaryMenu.appendItem(new MenuItem("Wrap Text", "win.toggle-wrap"));
+		hamburgerMenu.appendSection(null, primaryMenu);
+
+		hamburgerButton.setMenuModel(hamburgerMenu);
+		headerBar.packEnd(hamburgerButton);
 	}
 
 	/**
 	 * Creates the splitbutton and its menuitems.
-	 * 
+	 *
 	 * @param headerBar {@link HeaderBar} the parent of the splitbutton
 	 */
 	private void createSplitButton(HeaderBar headerBar) {
@@ -162,6 +181,23 @@ public class Texty3Window extends ApplicationWindow {
 		headerBar.packStart(splitButton);
 	}
 
+	private void loadFile() {
+		try {
+			var contents = new Out<byte[]>();
+			if (file.loadContents(null, contents, null)) {
+				var buffer = textView.getBuffer();
+				String str = new String(contents.get());
+				buffer.setText(str, str.length());
+				buffer.setModified(false);
+				modified = false;
+				updateWindowTitle();
+				textView.grabFocus();
+			}
+		} catch (GErrorException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	private void onNewAction() {
 		if (modified) {
 			promptToSaveModified("new");
@@ -180,7 +216,7 @@ public class Texty3Window extends ApplicationWindow {
 		} else {
 			// prompt for file to open
 			var dialog = new FileDialog();
-			dialog.open(this, null, (_, result, _) -> {
+			dialog.open(this, null, (obj, result, memSeg) -> {
 				try {
 					file = dialog.openFinish(result);
 					if (file != null) {
@@ -199,7 +235,7 @@ public class Texty3Window extends ApplicationWindow {
 	private void onSaveAsAction() {
 		// prompt for file to open
 		var dialog = new FileDialog();
-		dialog.save(this, null, (_, result, _) -> {
+		dialog.save(this, null, (obj, result, memSeg) -> {
 			try {
 				file = dialog.saveFinish(result);
 				if (file != null && file.queryExists(null)) {
@@ -214,20 +250,42 @@ public class Texty3Window extends ApplicationWindow {
 		});
 	}
 
-	private void loadFile() {
-		try {
-			var contents = new Out<byte[]>();
-			if (file.loadContents(null, contents, null)) {
-				var buffer = textView.getBuffer();
-				String str = new String(contents.get());
-				buffer.setText(str, str.length());
-				buffer.setModified(false);
-				modified = false;
-				updateWindowTitle();
-				textView.grabFocus();
-			}
-		} catch (GErrorException e) {
-			throw new RuntimeException(e);
+	private void onToggleWrapAction(Variant parameter) {
+		// get action's state
+		SimpleAction action = (SimpleAction) lookupAction("toggle-wrap");
+		boolean currentState = action.getState().getBoolean();
+		// toggle action state
+		boolean newState = !currentState;
+		action.setState(new Variant("b", newState));
+		// set wrap mode in textview
+		textView.setWrapMode(newState ? WrapMode.WORD : WrapMode.NONE);
+		// save as preference
+		settings.setBoolean("wrap-mode", newState);
+	}
+
+	private void onWindowSizeChange() {
+		int width = getWidth();
+		int height = getHeight();
+		// save window size to prefs
+		settings.setInt("window-width", width);
+		settings.setInt("window-height", height);
+	}
+
+	private void performNextAction(String nextAction) {
+		if (nextAction.equals("new")) {
+			clear();
+		} else if (nextAction.equals("open")) {
+			// prompt for file to open
+			var dialog = new FileDialog();
+			dialog.open(this, null, (obj, result2, memSeg) -> {
+				try {
+					file = dialog.openFinish(result2);
+					if (file != null) {
+						loadFile();
+					}
+				} catch (GErrorException ignored) {
+				} // user clicked cancel
+			});
 		}
 	}
 
@@ -238,26 +296,12 @@ public class Texty3Window extends ApplicationWindow {
 		alert.addResponses("save", "Save");
 		alert.setResponseAppearance("save", ResponseAppearance.SUGGESTED);
 		alert.setResponseAppearance("discard", ResponseAppearance.DESTRUCTIVE);
-		alert.choose(this, null, (_, result, _) -> {
+		alert.choose(this, null, (obj, result, memSeg) -> {
 			String response = alert.chooseFinish(result);
 			if (response.equals("save")) {
 				save();
 			} else if (response.equals("discard")) {
-				if (nextAction.equals("new")) {
-					clear();
-				} else if (nextAction.equals("open")) {
-					// prompt for file to open
-					var dialog = new FileDialog();
-					dialog.open(this, null, (_, result2, _) -> {
-						try {
-							file = dialog.openFinish(result2);
-							if (file != null) {
-								loadFile();
-							}
-						} catch (GErrorException ignored) {
-						} // user clicked cancel
-					});
-				}
+				performNextAction(nextAction);
 			}
 		});
 	}
@@ -267,7 +311,7 @@ public class Texty3Window extends ApplicationWindow {
 			saveFile();
 		} else {
 			var dialog = new FileDialog();
-			dialog.save(this, null, (_, result, _) -> {
+			dialog.save(this, null, (obj, result, memSeg) -> {
 				try {
 					file = dialog.saveFinish(result);
 					if (file != null) {
