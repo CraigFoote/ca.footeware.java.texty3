@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/ca/footeware/java/texty3">
+    <file preprocess="xml-stripblanks">window.ui</file>
+    <file preprocess="xml-stripblanks">help_overlay.ui</file>
+    <file>texty3.svg</file>
+  </gresource>
+</gresources>
+
