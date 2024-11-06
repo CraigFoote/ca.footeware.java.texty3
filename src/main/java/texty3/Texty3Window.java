@@ -2,6 +2,7 @@ package texty3;
 
 import java.util.HashSet;
 
+import org.gnome.adw.AboutDialog;
 import org.gnome.adw.AlertDialog;
 import org.gnome.adw.ApplicationWindow;
 import org.gnome.adw.HeaderBar;
@@ -147,6 +148,11 @@ public class Texty3Window extends ApplicationWindow {
 		toggleWrapAction.onActivate(this::onToggleWrapAction);
 		getApplication().setAccelsForAction("win.toggle-wrap", new String[] { "<primary><shift>w" });
 		addAction(toggleWrapAction);
+
+		var aboutAction = new SimpleAction("about", null);
+		aboutAction.onActivate(this::onAboutAction);
+		// no shortcut key, add to application
+		getApplication().addAction(aboutAction);
 	}
 
 	private void createHamburgerMenu(HeaderBar headerBar) {
@@ -158,6 +164,10 @@ public class Texty3Window extends ApplicationWindow {
 		var primaryMenu = new Menu();
 		primaryMenu.appendItem(new MenuItem("Wrap Text", "win.toggle-wrap"));
 		hamburgerMenu.appendSection(null, primaryMenu);
+
+		var secondaryMenu = new Menu();
+		secondaryMenu.appendItem(new MenuItem("About texty3", "app.about"));
+		hamburgerMenu.appendSection(null, secondaryMenu);
 
 		hamburgerButton.setMenuModel(hamburgerMenu);
 		headerBar.packEnd(hamburgerButton);
@@ -206,6 +216,20 @@ public class Texty3Window extends ApplicationWindow {
 		} catch (GErrorException e) {
 			showToast(e.getMessage());
 		}
+	}
+
+	private void onAboutAction(Variant variant1) {
+		// @formatter:off
+		var about = AboutDialog.builder()
+				.setApplicationName("texty3")
+				.setApplicationIcon("texty3")
+				.setDeveloperName("Another fine mess by Footeware.ca")
+				.setVersion("1.0.0")
+				.setDevelopers(new String[] { "Craig Foote https://Footeware.ca" })
+				.setCopyright("© 2024 Craig Foote")
+				.build();
+		// @formatter:on
+		about.present(this);
 	}
 
 	private void onNewAction() {

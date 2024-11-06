@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="Adw" version="1.0"/>
+  <template class="Texty3Window" parent="AdwApplicationWindow">
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="AdwHeaderBar">
+          <property name="centering-policy">strict</property>
+            <property name="title-widget">
+              <object class="AdwWindowTitle" id="window_title">
+                <property name="title">texty2</property>
+                <property name="subtitle">a minimal text editor</property>
+              </object>
+            </property>
+            <child type="start">
+              <object class="AdwSplitButton" id="save_button">
+                <property name="label">Save</property>
+                <property name="action-name">win.save</property>
+                <property name="menu-model">split-button-menu</property>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkMenuButton" id="menu_button">
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="menu-model">hamburger-menu</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+        <object class="AdwToastOverlay" id="toast_overlay">
+          <child>
+            <object class="GtkScrolledWindow">
+              <property name="hexpand">true</property>
+              <property name="vexpand">true</property>
+              <child>
+                <object class="GtkTextView" id="text_view">
+                </object>
+              </child>
+            </object>
+          </child>
+        </object>
+      </child>
+    </object>
+    </child>
+  </template>
+
+  <menu id="split-button-menu">
+    <section>
+      <item>
+        <attribute name="label">New</attribute>
+        <attribute name="action">win.new</attribute>
+      </item>
+      <item>
+        <attribute name="label">Open</attribute>
+        <attribute name="action">win.open</attribute>
+      </item>
+      <item>
+        <attribute name="label">Save As</attribute>
+        <attribute name="action">win.save-as</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label">New Window</attribute>
+        <attribute name="action">app.new-window</attribute>
+      </item>
+    </section>
+  </menu>
+
+  <menu id="hamburger-menu">
+    <section>
+      <item>
+        <attribute name="label">Wrap Text</attribute>
+        <attribute name="action">win.toggle-wrap</attribute>
+        <attribute name="accelerator">&lt;primary&gt;&lt;shift&gt;W</attribute>
+      </item>
+      <submenu>
+        <attribute name="label">Font Size</attribute>
+        <item>
+          <attribute name="label">14px</attribute>
+          <attribute name="action">win.set-font-size</attribute>
+          <attribute name="target" type="i">14</attribute>
+        </item>
+        <item>
+          <attribute name="label">16px</attribute>
+          <attribute name="action">win.set-font-size</attribute>
+          <attribute name="target" type="i">16</attribute>
+        </item>
+        <item>
+          <attribute name="label">18px</attribute>
+          <attribute name="action">win.set-font-size</attribute>
+          <attribute name="target" type="i">18</attribute>
+        </item>
+        <item>
+          <attribute name="label">20px</attribute>
+          <attribute name="action">win.set-font-size</attribute>
+          <attribute name="target" type="i">20</attribute>
+        </item>
+        <item>
+          <attribute name="label">22px</attribute>
+          <attribute name="action">win.set-font-size</attribute>
+          <attribute name="target" type="i">22</attribute>
+        </item>
+        <item>
+          <attribute name="label">24px</attribute>
+          <attribute name="action">win.set-font-size</attribute>
+          <attribute name="target" type="i">24</attribute>
+        </item>
+        <item>
+          <attribute name="label">26px</attribute>
+          <attribute name="action">win.set-font-size</attribute>
+          <attribute name="target" type="i">26</attribute>
+        </item>
+        <item>
+          <attribute name="label">28px</attribute>
+          <attribute name="action">win.set-font-size</attribute>
+          <attribute name="target" type="i">28</attribute>
+        </item>
+      </submenu>
+    </section>
+    <section>
+      <item>
+        <attribute name="label">Keyboard Shortcuts</attribute>
+        <attribute name="action">app.keyboard-shortcuts</attribute>
+        <attribute name="accelerator">&lt;primary&gt;question</attribute>
+      </item>
+      <item>
+        <attribute name="label">About texty2</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>
+
