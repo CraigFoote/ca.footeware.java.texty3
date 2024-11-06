@@ -7,6 +7,8 @@ import org.gnome.adw.ApplicationWindow;
 import org.gnome.adw.HeaderBar;
 import org.gnome.adw.ResponseAppearance;
 import org.gnome.adw.SplitButton;
+import org.gnome.adw.Toast;
+import org.gnome.adw.ToastOverlay;
 import org.gnome.adw.WindowTitle;
 import org.gnome.gio.File;
 import org.gnome.gio.FileCreateFlags;
@@ -39,6 +41,7 @@ public class Texty3Window extends ApplicationWindow {
 	private boolean modified = false;
 	private Settings settings;
 	private TextView textView;
+	private ToastOverlay toastOverlay;
 	private WindowTitle windowTitle;
 
 	/**
@@ -82,7 +85,12 @@ public class Texty3Window extends ApplicationWindow {
 		var scrolledWindow = new ScrolledWindow();
 		scrolledWindow.setChild(textView);
 		scrolledWindow.setVexpand(true);
-		vbox.append(scrolledWindow);
+
+		toastOverlay = new ToastOverlay();
+		toastOverlay.setVexpand(true);
+		toastOverlay.setHexpand(true);
+		toastOverlay.setChild(scrolledWindow);
+		vbox.append(toastOverlay);
 
 		windowTitle = new WindowTitle("texty3", "a minimal text editor");
 		headerBar.setTitleWidget(windowTitle);
@@ -192,9 +200,11 @@ public class Texty3Window extends ApplicationWindow {
 				modified = false;
 				updateWindowTitle();
 				textView.grabFocus();
+				String message = "File opened: " + file.getBasename();
+				showToast(message);
 			}
 		} catch (GErrorException e) {
-			throw new RuntimeException(e);
+			showToast(e.getMessage());
 		}
 	}
 
@@ -329,6 +339,13 @@ public class Texty3Window extends ApplicationWindow {
 		textView.grabFocus();
 		modified = false;
 		updateWindowTitle();
+		String message = "File saved: " + file.getBasename();
+		showToast(message);
+	}
+
+	private void showToast(String message) {
+		var toast = new Toast(message);
+		toastOverlay.addToast(toast);
 	}
 
 	private void updateWindowTitle() {
@@ -346,8 +363,7 @@ public class Texty3Window extends ApplicationWindow {
 			// Write the byte array to the file
 			file.replaceContents(contents, "", false, FileCreateFlags.NONE, null, null);
 		} catch (GErrorException e) {
-			AlertDialog alert = new AlertDialog("Error", e.getMessage());
-			alert.setVisible(true);
+			showToast(e.getMessage());
 		}
 	}
 }
