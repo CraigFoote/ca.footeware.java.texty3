@@ -1,5 +1,6 @@
 package texty3;
 
+import java.io.IOException;
 import java.util.HashSet;
 
 import org.gnome.adw.AboutDialog;
@@ -11,6 +12,7 @@ import org.gnome.adw.SplitButton;
 import org.gnome.adw.Toast;
 import org.gnome.adw.ToastOverlay;
 import org.gnome.adw.WindowTitle;
+import org.gnome.gdk.Display;
 import org.gnome.gio.File;
 import org.gnome.gio.FileCreateFlags;
 import org.gnome.gio.Menu;
@@ -18,11 +20,15 @@ import org.gnome.gio.MenuItem;
 import org.gnome.gio.Settings;
 import org.gnome.gio.SimpleAction;
 import org.gnome.glib.Variant;
+import org.gnome.glib.VariantType;
 import org.gnome.gtk.Box;
+import org.gnome.gtk.CssProvider;
 import org.gnome.gtk.FileDialog;
+import org.gnome.gtk.Gtk;
 import org.gnome.gtk.MenuButton;
 import org.gnome.gtk.Orientation;
 import org.gnome.gtk.ScrolledWindow;
+import org.gnome.gtk.StyleContext;
 import org.gnome.gtk.TextIter;
 import org.gnome.gtk.TextView;
 import org.gnome.gtk.WrapMode;
@@ -77,6 +83,10 @@ public class Texty3Window extends ApplicationWindow {
 		// set initial state
 		boolean wrapMode = settings.getBoolean("wrap-mode");
 		textView.setWrapMode(wrapMode ? WrapMode.WORD : WrapMode.NONE);
+
+		loadCss();
+		int initialSize = settings.getInt("font-size");
+		textView.addCssClass("font-size-" + initialSize);
 
 		textView.getBuffer().onModifiedChanged(() -> {
 			modified = textView.getBuffer().getModified();
@@ -149,6 +159,14 @@ public class Texty3Window extends ApplicationWindow {
 		getApplication().setAccelsForAction("win.toggle-wrap", new String[] { "<primary><shift>w" });
 		addAction(toggleWrapAction);
 
+		// Font Size action
+		var fontSizeAction = SimpleAction.stateful("font-size", new VariantType("i"),
+				new Variant("i", settings.getInt("font-size")));
+		fontSizeAction.onActivate((SimpleAction.ActivateCallback) parameter -> onFontSizeAction(parameter));
+		// no shortcut, add to window
+		addAction(fontSizeAction);
+
+		// About dialog
 		var aboutAction = new SimpleAction("about", null);
 		aboutAction.onActivate(this::onAboutAction);
 		// no shortcut key, add to application
@@ -162,7 +180,19 @@ public class Texty3Window extends ApplicationWindow {
 		var hamburgerMenu = new Menu();
 
 		var primaryMenu = new Menu();
+
 		primaryMenu.appendItem(new MenuItem("Wrap Text", "win.toggle-wrap"));
+		Menu fontMenu = new Menu();
+		fontMenu.appendItem(new MenuItem("14px", "win.font-size(14)"));
+		fontMenu.appendItem(new MenuItem("16px", "win.font-size(16)"));
+		fontMenu.appendItem(new MenuItem("18px", "win.font-size(18)"));
+		fontMenu.appendItem(new MenuItem("20px", "win.font-size(20)"));
+		fontMenu.appendItem(new MenuItem("22px", "win.font-size(22)"));
+		fontMenu.appendItem(new MenuItem("24px", "win.font-size(24)"));
+		fontMenu.appendItem(new MenuItem("26px", "win.font-size(26)"));
+		fontMenu.appendItem(new MenuItem("28px", "win.font-size(28)"));
+		primaryMenu.appendSubmenu("Font Size", fontMenu);
+
 		hamburgerMenu.appendSection(null, primaryMenu);
 
 		var secondaryMenu = new Menu();
@@ -199,6 +229,20 @@ public class Texty3Window extends ApplicationWindow {
 		headerBar.packStart(splitButton);
 	}
 
+	private void loadCss() {
+		var cssProvider = new CssProvider();
+		try {
+			var cssResource = Texty3.class.getResourceAsStream("/style.css");
+			byte[] cssBytes = cssResource.readAllBytes();
+			cssProvider.loadFromString(new String(cssBytes));
+			// TODO try updating when Java-GI 0.12.0 is released
+			StyleContext.addProviderForDisplay(Display.getDefault(), cssProvider,
+					Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+		} catch (IOException e) {
+			System.err.println("Failed to load CSS: " + e.getMessage());
+		}
+	}
+
 	private void loadFile() {
 		try {
 			var contents = new Out<byte[]>();
@@ -230,6 +274,22 @@ public class Texty3Window extends ApplicationWindow {
 				.build();
 		// @formatter:on
 		about.present(this);
+	}
+
+	private void onFontSizeAction(Variant parameter) {
+		int size = parameter.getInt32();
+		settings.setInt("font-size", size);
+
+		// Remove any existing font size classes
+		for (int i = 14; i <= 28; i += 2) {
+			textView.removeCssClass("font-size-" + i);
+		}
+
+		// Add the new font size class
+		textView.addCssClass("font-size-" + size);
+
+		SimpleAction action = (SimpleAction) lookupAction("font-size");
+		action.setState(new Variant("i", size));
 	}
 
 	private void onNewAction() {
