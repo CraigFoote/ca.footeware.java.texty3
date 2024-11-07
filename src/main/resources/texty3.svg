@@ -10,7 +10,7 @@
    id="svg11300"
    sodipodi:version="0.32"
    inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
-   sodipodi:docname="ca.footeware.java.texty3.svg"
+   sodipodi:docname="texty3.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    version="1.0"
    style="display:inline;enable-background:new"
@@ -383,7 +383,7 @@
     <path
        id="secondary"
        d="m 109.83123,20.56028 a 20.519828,20.457756 0 0 0 -29.035551,0 L 68.124687,33.19294 a 5.1299571,5.1144392 0 0 0 0,7.26251 l 21.751014,21.68522 a 5.1299571,5.1144392 0 0 0 7.284536,0 L 109.83123,49.76372 a 20.519828,20.457756 0 0 0 0,-29.20344 z"
-       style="fill:#ff5900;stroke:#808080;stroke-width:1.53666;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1" />
+       style="fill:#e66100;stroke:#808080;stroke-width:1.53666;stroke-dasharray:none;stroke-opacity:1;fill-opacity:1" />
     <path
        id="primary"
        d="M 82.69376,69.30088 60.942746,47.61566 a 5.1299571,5.1144392 0 0 0 -7.284539,0 L 15.337429,85.82053 a 5.1299571,5.1144392 0 0 0 -1.487686,3.63125 V 111.137 a 5.1299571,5.1144392 0 0 0 5.129958,5.11443 h 21.751016 a 5.1299571,5.1144392 0 0 0 3.898766,-1.48319 L 82.95026,76.56339 A 5.1299571,5.1144392 0 0 0 82.6938,69.30088 Z"
