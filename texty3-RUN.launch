@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<launchConfiguration type="org.eclipse.buildship.core.launch.runconfiguration">
+    <listAttribute key="arguments"/>
+    <booleanAttribute key="build_scans_enabled" value="false"/>
+    <stringAttribute key="gradle_distribution" value="GRADLE_DISTRIBUTION(WRAPPER)"/>
+    <stringAttribute key="gradle_user_home" value=""/>
+    <stringAttribute key="java_home" value=""/>
+    <listAttribute key="jvm_arguments"/>
+    <booleanAttribute key="offline_mode" value="false"/>
     <booleanAttribute key="org.eclipse.debug.core.ATTR_FORCE_SYSTEM_CONSOLE_ENCODING" value="false"/>
-    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-        <listEntry value="/texty3/src/main/java/texty3/Texty3.java"/>
-    </listAttribute>
-    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
-        <listEntry value="1"/>
-    </listAttribute>
     <listAttribute key="org.eclipse.debug.ui.favoriteGroups">
         <listEntry value="org.eclipse.debug.ui.launchGroup.run"/>
-        <listEntry value="org.eclipse.debug.ui.launchGroup.debug"/>
     </listAttribute>
-    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_ATTR_USE_ARGFILE" value="false"/>
-    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_SHOW_CODEDETAILS_IN_EXCEPTION_MESSAGES" value="true"/>
-    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_CLASSPATH_ONLY_JAR" value="false"/>
-    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
-    <stringAttribute key="org.eclipse.jdt.launching.CLASSPATH_PROVIDER" value="org.eclipse.m2e.launchconfig.classpathProvider"/>
-    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="texty3.Texty3"/>
-    <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="texty3"/>
-    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="texty3"/>
-    <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.m2e.launchconfig.sourcepathProvider"/>
-    <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="--enable-native-access=ALL-UNNAMED"/>
+    <booleanAttribute key="override_workspace_settings" value="false"/>
+    <booleanAttribute key="show_console_view" value="true"/>
+    <booleanAttribute key="show_execution_view" value="true"/>
+    <listAttribute key="tasks">
+        <listEntry value="run"/>
+    </listAttribute>
+    <stringAttribute key="working_dir" value="${workspace_loc:/texty3}"/>
 </launchConfiguration>

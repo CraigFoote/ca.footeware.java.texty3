@@ -1,33 +1,31 @@
+/**
+ * 
+ */
 package texty3;
 
 import java.io.IOException;
+import java.lang.foreign.MemorySegment;
 import java.util.HashSet;
 
-import org.gnome.adw.AboutDialog;
 import org.gnome.adw.AlertDialog;
+import org.gnome.adw.Application;
 import org.gnome.adw.ApplicationWindow;
-import org.gnome.adw.HeaderBar;
 import org.gnome.adw.ResponseAppearance;
-import org.gnome.adw.SplitButton;
 import org.gnome.adw.Toast;
 import org.gnome.adw.ToastOverlay;
 import org.gnome.adw.WindowTitle;
 import org.gnome.gdk.Display;
 import org.gnome.gio.File;
 import org.gnome.gio.FileCreateFlags;
-import org.gnome.gio.Menu;
-import org.gnome.gio.MenuItem;
 import org.gnome.gio.Settings;
 import org.gnome.gio.SimpleAction;
+import org.gnome.glib.Type;
 import org.gnome.glib.Variant;
 import org.gnome.glib.VariantType;
-import org.gnome.gtk.Box;
+import org.gnome.gobject.GObject;
 import org.gnome.gtk.CssProvider;
 import org.gnome.gtk.FileDialog;
 import org.gnome.gtk.Gtk;
-import org.gnome.gtk.MenuButton;
-import org.gnome.gtk.Orientation;
-import org.gnome.gtk.ScrolledWindow;
 import org.gnome.gtk.StyleContext;
 import org.gnome.gtk.TextIter;
 import org.gnome.gtk.TextView;
@@ -35,30 +33,56 @@ import org.gnome.gtk.WrapMode;
 
 import io.github.jwharm.javagi.base.GErrorException;
 import io.github.jwharm.javagi.base.Out;
+import io.github.jwharm.javagi.gobject.annotations.InstanceInit;
+import io.github.jwharm.javagi.gtk.annotations.GtkChild;
+import io.github.jwharm.javagi.gtk.annotations.GtkTemplate;
+import io.github.jwharm.javagi.gtk.types.TemplateTypes;
 
 /**
- * texty3's window with menus and text view.
- *
  * @author Footeware.ca
  *
  */
+@GtkTemplate(name = "Texty3Window", ui = "/texty3/window.ui")
 public class Texty3Window extends ApplicationWindow {
 
-	private File file;
-	private boolean modified = false;
-	private Settings settings;
-	private TextView textView;
-	private ToastOverlay toastOverlay;
-	private WindowTitle windowTitle;
+	public static Type gtype = TemplateTypes.register(Texty3Window.class);
+	private static Application app;
 
 	/**
 	 * Constructor.
 	 *
-	 * @param app {@link Texty3} the enclosing application
+	 * @param app {@link Texty3Application} the enclosing application
 	 */
-	public Texty3Window(Texty3 app) {
-		super(app);
+	public static Texty3Window create(Application app) {
+		Texty3Window.app = app;
+		Texty3Window win = GObject.newInstance(gtype);
+		win.setApplication(app);
+		return win;
+	}
 
+	private File file;
+	private Settings settings;
+	@GtkChild(name = "text_view")
+	public TextView textView;
+	@GtkChild(name = "toast_overlay")
+	public ToastOverlay toastOverlay;
+	@GtkChild(name = "window_title")
+	public WindowTitle windowTitle;
+
+	public Texty3Window(MemorySegment address) {
+		super(address);
+	}
+
+	private void clear() {
+		file = null;
+		textView.getBuffer().setText("", 0);
+		textView.getBuffer().setModified(false);
+		updateWindowTitle();
+		textView.grabFocus();
+	}
+
+	@InstanceInit
+	public void init() {
 		settings = new Settings("ca.footeware.java.texty3");
 
 		// set window sized based on last resize
@@ -67,175 +91,62 @@ public class Texty3Window extends ApplicationWindow {
 		setDefaultSize(width, height);
 
 		// connect to window size change signals
-		onNotify("default-width", paramSpec -> onWindowSizeChange());
-		onNotify("default-height", paramSpec -> onWindowSizeChange());
+		onNotify("default-width", _ -> onWindowSizeChange());
+		onNotify("default-height", _ -> onWindowSizeChange());
 
-		createActions();
-
-		var vbox = new Box(Orientation.VERTICAL, 0);
-
-		var headerBar = new HeaderBar();
-		createSplitButton(headerBar);
-		vbox.append(headerBar);
-
-		textView = new TextView();
-		textView.setMonospace(true);
-		// set initial state
-		boolean wrapMode = settings.getBoolean("wrap-mode");
-		textView.setWrapMode(wrapMode ? WrapMode.WORD : WrapMode.NONE);
-
-		loadCss();
-		int initialSize = settings.getInt("font-size");
-		textView.addCssClass("font-size-" + initialSize);
-
-		textView.getBuffer().onModifiedChanged(() -> {
-			modified = textView.getBuffer().getModified();
-			updateWindowTitle();
-		});
-
-		var scrolledWindow = new ScrolledWindow();
-		scrolledWindow.setChild(textView);
-		scrolledWindow.setVexpand(true);
-
-		toastOverlay = new ToastOverlay();
-		toastOverlay.setVexpand(true);
-		toastOverlay.setHexpand(true);
-		toastOverlay.setChild(scrolledWindow);
-		vbox.append(toastOverlay);
-
-		windowTitle = new WindowTitle("texty3", "a minimal text editor");
-		headerBar.setTitleWidget(windowTitle);
-
-		createHamburgerMenu(headerBar);
-
-		setContent(vbox);
-
-		textView.grabFocus();
-	}
-
-	private void clear() {
-		file = null;
-		textView.getBuffer().setText("", 0);
-		textView.getBuffer().setModified(false);
-		modified = false;
-		updateWindowTitle();
-		textView.grabFocus();
-	}
-
-	private void createActions() {
 		// Save action
 		var saveAction = new SimpleAction("save", null);
-		saveAction.onActivate((SimpleAction.ActivateCallback) parameter -> onSaveAction());
+		saveAction.onActivate((SimpleAction.ActivateCallback) _ -> onSaveAction());
 		addAction(saveAction);
 
 		// New action
 		var newAction = new SimpleAction("new", null);
-		newAction.onActivate((SimpleAction.ActivateCallback) parameter -> onNewAction());
-		getApplication().setAccelsForAction("win.new", new String[] { "<primary>n" });
+		newAction.onActivate((SimpleAction.ActivateCallback) _ -> onNewAction());
+		app.setAccelsForAction("win.new", new String[] { "<primary>n" });
 		addAction(newAction);
 
 		// Open action
 		var openAction = new SimpleAction("open", null);
-		openAction.onActivate((SimpleAction.ActivateCallback) parameter -> onOpenAction());
-		getApplication().setAccelsForAction("win.open", new String[] { "<primary>o" });
+		openAction.onActivate((SimpleAction.ActivateCallback) _ -> onOpenAction());
+		app.setAccelsForAction("win.open", new String[] { "<primary>o" });
 		addAction(openAction);
 
 		// Save As action
 		var saveAsAction = new SimpleAction("save-as", null);
-		saveAsAction.onActivate((SimpleAction.ActivateCallback) parameter -> onSaveAsAction());
-		getApplication().setAccelsForAction("win.save-as", new String[] { "<primary><shift>s" });
+		saveAsAction.onActivate((SimpleAction.ActivateCallback) _ -> onSaveAsAction());
+		app.setAccelsForAction("win.save-as", new String[] { "<primary><shift>s" });
 		addAction(saveAsAction);
 
 		// New Window action
 		var newWindowAction = new SimpleAction("new-win", null);
-		newWindowAction.onActivate((SimpleAction.ActivateCallback) parameter -> onNewWindowAction());
-		getApplication().setAccelsForAction("app.new-win", new String[] { "<primary><shift>n" });
-		getApplication().addAction(newWindowAction);
+		newWindowAction.onActivate((SimpleAction.ActivateCallback) _ -> onNewWindowAction());
+		app.setAccelsForAction("app.new-win", new String[] { "<primary><shift>n" });
+		app.addAction(newWindowAction);
 
 		// Toggle Wrap action with initial state
 		var toggleWrapAction = SimpleAction.stateful("toggle-wrap", null,
 				new Variant("b", settings.getBoolean("wrap-mode")));
 		toggleWrapAction.onActivate(this::onToggleWrapAction);
-		getApplication().setAccelsForAction("win.toggle-wrap", new String[] { "<primary><shift>w" });
+		app.setAccelsForAction("win.toggle-wrap", new String[] { "<primary><shift>w" });
 		addAction(toggleWrapAction);
 
 		// Font Size action
-		var fontSizeAction = SimpleAction.stateful("font-size", new VariantType("i"),
+		var fontSizeAction = SimpleAction.stateful("set-font-size", new VariantType("i"),
 				new Variant("i", settings.getInt("font-size")));
 		fontSizeAction.onActivate((SimpleAction.ActivateCallback) parameter -> onFontSizeAction(parameter));
 		// no shortcut, add to window
 		addAction(fontSizeAction);
+		// fire once to set font-size as per settings
+		fontSizeAction.activate(new Variant("i", settings.getInt("font-size")));
 
-		// About dialog
-		var aboutAction = new SimpleAction("about", null);
-		aboutAction.onActivate(this::onAboutAction);
-		// no shortcut key, add to application
-		getApplication().addAction(aboutAction);
-	}
-
-	private void createHamburgerMenu(HeaderBar headerBar) {
-		MenuButton hamburgerButton = new MenuButton();
-		hamburgerButton.setIconName("open-menu-symbolic");
-
-		var hamburgerMenu = new Menu();
-
-		var primaryMenu = new Menu();
-
-		primaryMenu.appendItem(new MenuItem("Wrap Text", "win.toggle-wrap"));
-		Menu fontMenu = new Menu();
-		fontMenu.appendItem(new MenuItem("14px", "win.font-size(14)"));
-		fontMenu.appendItem(new MenuItem("16px", "win.font-size(16)"));
-		fontMenu.appendItem(new MenuItem("18px", "win.font-size(18)"));
-		fontMenu.appendItem(new MenuItem("20px", "win.font-size(20)"));
-		fontMenu.appendItem(new MenuItem("22px", "win.font-size(22)"));
-		fontMenu.appendItem(new MenuItem("24px", "win.font-size(24)"));
-		fontMenu.appendItem(new MenuItem("26px", "win.font-size(26)"));
-		fontMenu.appendItem(new MenuItem("28px", "win.font-size(28)"));
-		primaryMenu.appendSubmenu("Font Size", fontMenu);
-
-		hamburgerMenu.appendSection(null, primaryMenu);
-
-		var secondaryMenu = new Menu();
-		secondaryMenu.appendItem(new MenuItem("About texty3", "app.about"));
-		hamburgerMenu.appendSection(null, secondaryMenu);
-
-		hamburgerButton.setMenuModel(hamburgerMenu);
-		headerBar.packEnd(hamburgerButton);
-	}
-
-	/**
-	 * Creates the splitbutton and its menuitems.
-	 *
-	 * @param headerBar {@link HeaderBar} the parent of the splitbutton
-	 */
-	private void createSplitButton(HeaderBar headerBar) {
-		var splitButton = new SplitButton();
-		splitButton.setLabel("Save");
-		splitButton.setActionName("win.save");
-
-		var actionMenu = new Menu();
-
-		var windowActions = new Menu();
-		windowActions.appendItem(new MenuItem("New", "win.new"));
-		windowActions.appendItem(new MenuItem("Save As", "win.save-as"));
-		windowActions.appendItem(new MenuItem("Open", "win.open"));
-		actionMenu.appendSection(null, windowActions);
-
-		var appActions = new Menu();
-		appActions.appendItem(new MenuItem("New Window", "app.new-win"));
-		actionMenu.appendSection(null, appActions);
-
-		splitButton.setMenuModel(actionMenu);
-		headerBar.packStart(splitButton);
+		loadCss(); // for font-sizes
 	}
 
 	private void loadCss() {
 		var cssProvider = new CssProvider();
-		try {
-			var cssResource = Texty3.class.getResourceAsStream("/style.css");
+		try (var cssResource = Texty3Application.class.getResourceAsStream("/style.css")) {
 			byte[] cssBytes = cssResource.readAllBytes();
 			cssProvider.loadFromString(new String(cssBytes));
-			// TODO try updating when Java-GI 0.12.0 is released
 			StyleContext.addProviderForDisplay(Display.getDefault(), cssProvider,
 					Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 		} catch (IOException e) {
@@ -251,7 +162,6 @@ public class Texty3Window extends ApplicationWindow {
 				String str = new String(contents.get());
 				buffer.setText(str, str.length());
 				buffer.setModified(false);
-				modified = false;
 				updateWindowTitle();
 				textView.grabFocus();
 				String message = "File opened: " + file.getBasename();
@@ -262,38 +172,25 @@ public class Texty3Window extends ApplicationWindow {
 		}
 	}
 
-	private void onAboutAction(Variant variant1) {
-		// @formatter:off
-		var about = AboutDialog.builder()
-				.setApplicationName("texty3")
-				.setApplicationIcon("texty3")
-				.setDeveloperName("Another fine mess by Footeware.ca")
-				.setVersion("1.0.0")
-				.setDevelopers(new String[] { "Craig Foote https://Footeware.ca" })
-				.setCopyright("© 2024 Craig Foote")
-				.build();
-		// @formatter:on
-		about.present(this);
-	}
-
 	private void onFontSizeAction(Variant parameter) {
 		int size = parameter.getInt32();
 		settings.setInt("font-size", size);
 
-		// Remove any existing font size classes
-		for (int i = 14; i <= 28; i += 2) {
-			textView.removeCssClass("font-size-" + i);
+		// Remove any existing font size classes, will fail silently if not exists
+		if (textView != null) {
+			for (int i = 14; i <= 28; i += 2) {
+				textView.removeCssClass("font-size-" + i);
+				// Add the new font size class
+				textView.addCssClass("font-size-" + size);
+			}
 		}
 
-		// Add the new font size class
-		textView.addCssClass("font-size-" + size);
-
-		SimpleAction action = (SimpleAction) lookupAction("font-size");
+		SimpleAction action = (SimpleAction) lookupAction("set-font-size");
 		action.setState(new Variant("i", size));
 	}
 
 	private void onNewAction() {
-		if (modified) {
+		if (textView.getBuffer().getModified()) {
 			promptToSaveModified("new");
 		} else {
 			clear();
@@ -301,23 +198,24 @@ public class Texty3Window extends ApplicationWindow {
 	}
 
 	private void onNewWindowAction() {
-		((Texty3) getApplication()).openWindow();
+		Texty3Application.create();
 	}
 
 	private void onOpenAction() {
-		if (modified) {
+		if (textView.getBuffer().getModified()) {
 			promptToSaveModified("open"); // newAction = "open"
 		} else {
 			// prompt for file to open
 			var dialog = new FileDialog();
-			dialog.open(this, null, (obj, result, memSeg) -> {
+			dialog.open(this, null, (_, result, _) -> {
 				try {
 					file = dialog.openFinish(result);
 					if (file != null) {
 						loadFile();
 					}
 				} catch (GErrorException ignored) {
-				} // user clicked cancel
+					// user clicked cancel
+				}
 			});
 		}
 	}
@@ -329,7 +227,7 @@ public class Texty3Window extends ApplicationWindow {
 	private void onSaveAsAction() {
 		// prompt for file to open
 		var dialog = new FileDialog();
-		dialog.save(this, null, (obj, result, memSeg) -> {
+		dialog.save(this, null, (_, result, _) -> {
 			try {
 				file = dialog.saveFinish(result);
 				if (file != null && file.queryExists(null)) {
@@ -371,7 +269,7 @@ public class Texty3Window extends ApplicationWindow {
 		} else if (nextAction.equals("open")) {
 			// prompt for file to open
 			var dialog = new FileDialog();
-			dialog.open(this, null, (obj, result2, memSeg) -> {
+			dialog.open(this, null, (_, result2, _) -> {
 				try {
 					file = dialog.openFinish(result2);
 					if (file != null) {
@@ -385,12 +283,12 @@ public class Texty3Window extends ApplicationWindow {
 
 	private void promptToSaveModified(String nextAction) {
 		AlertDialog alert = new AlertDialog("Save?", "Would you like to save modifications?");
-		alert.addResponses("cancel", "Cancel");
-		alert.addResponses("discard", "Discard");
-		alert.addResponses("save", "Save");
+		alert.addResponse("cancel", "Cancel");
+		alert.addResponse("discard", "Discard");
+		alert.addResponse("save", "Save");
 		alert.setResponseAppearance("save", ResponseAppearance.SUGGESTED);
 		alert.setResponseAppearance("discard", ResponseAppearance.DESTRUCTIVE);
-		alert.choose(this, null, (obj, result, memSeg) -> {
+		alert.choose(this, null, (_, result, _) -> {
 			String response = alert.chooseFinish(result);
 			if (response.equals("save")) {
 				save();
@@ -405,7 +303,7 @@ public class Texty3Window extends ApplicationWindow {
 			saveFile();
 		} else {
 			var dialog = new FileDialog();
-			dialog.save(this, null, (obj, result, memSeg) -> {
+			dialog.save(this, null, (_, result, _) -> {
 				try {
 					file = dialog.saveFinish(result);
 					if (file != null) {
@@ -421,7 +319,6 @@ public class Texty3Window extends ApplicationWindow {
 		write();
 		textView.getBuffer().setModified(false);
 		textView.grabFocus();
-		modified = false;
 		updateWindowTitle();
 		String message = "File saved: " + file.getBasename();
 		showToast(message);
@@ -433,7 +330,8 @@ public class Texty3Window extends ApplicationWindow {
 	}
 
 	private void updateWindowTitle() {
-		windowTitle.setTitle((modified ? "• " : "") + (file != null ? file.getBasename() : "texty3"));
+		windowTitle.setTitle(
+				(textView.getBuffer().getModified() ? "• " : "") + (file != null ? file.getBasename() : "texty3"));
 		windowTitle.setSubtitle(file != null ? file.getPath() : "a minimal text editor");
 	}
 
