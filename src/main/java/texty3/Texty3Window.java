@@ -3,7 +3,6 @@
  */
 package texty3;
 
-import java.io.IOException;
 import java.lang.foreign.MemorySegment;
 import java.util.HashSet;
 
@@ -26,7 +25,6 @@ import org.gnome.gobject.GObject;
 import org.gnome.gtk.CssProvider;
 import org.gnome.gtk.FileDialog;
 import org.gnome.gtk.Gtk;
-import org.gnome.gtk.StyleContext;
 import org.gnome.gtk.TextIter;
 import org.gnome.gtk.TextView;
 import org.gnome.gtk.WrapMode;
@@ -62,6 +60,7 @@ public class Texty3Window extends ApplicationWindow {
 
 	private File file;
 	private Settings settings;
+	private CssProvider provider = new CssProvider();;
 	@GtkChild(name = "text_view")
 	public TextView textView;
 	@GtkChild(name = "toast_overlay")
@@ -88,7 +87,7 @@ public class Texty3Window extends ApplicationWindow {
 		// set window sized based on last resize
 		int width = settings.getInt("window-width");
 		int height = settings.getInt("window-height");
-		setDefaultSize(width, height);
+		setSizeRequest(width, height);
 
 		// connect to window size change signals
 		onNotify("default-width", _ -> onWindowSizeChange());
@@ -139,19 +138,12 @@ public class Texty3Window extends ApplicationWindow {
 		// fire once to set font-size as per settings
 		fontSizeAction.activate(new Variant("i", settings.getInt("font-size")));
 
-		loadCss(); // for font-sizes
-	}
-
-	private void loadCss() {
-		var cssProvider = new CssProvider();
-		try (var cssResource = Texty3Application.class.getResourceAsStream("/style.css")) {
-			byte[] cssBytes = cssResource.readAllBytes();
-			cssProvider.loadFromString(new String(cssBytes));
-			StyleContext.addProviderForDisplay(Display.getDefault(), cssProvider,
-					Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-		} catch (IOException e) {
-			System.err.println("Failed to load CSS: " + e.getMessage());
-		}
+		// init font-size
+		textView.setName("journalTextView");
+		int fontSize = settings.getInt("font-size");
+		String css = "#journalTextView { font-family: Mono; font-size: " + fontSize + "px; }";
+		provider.loadFromString(css);
+		Gtk.styleContextAddProviderForDisplay(Display.getDefault(), provider, 600);
 	}
 
 	private void loadFile() {
@@ -176,14 +168,9 @@ public class Texty3Window extends ApplicationWindow {
 		int size = parameter.getInt32();
 		settings.setInt("font-size", size);
 
-		// Remove any existing font size classes, will fail silently if not exists
-		if (textView != null) {
-			for (int i = 14; i <= 28; i += 2) {
-				textView.removeCssClass("font-size-" + i);
-				// Add the new font size class
-				textView.addCssClass("font-size-" + size);
-			}
-		}
+		String css = "#journalTextView { font-family: Mono; font-size: " + size + "px; }";
+		provider.loadFromString(css);
+		Gtk.styleContextAddProviderForDisplay(Display.getDefault(), provider, 500);
 
 		SimpleAction action = (SimpleAction) lookupAction("set-font-size");
 		action.setState(new Variant("i", size));

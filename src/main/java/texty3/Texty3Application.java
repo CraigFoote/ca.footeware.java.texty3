@@ -60,6 +60,7 @@ public class Texty3Application extends Application {
             .build();
         about.present(this.getActiveWindow());
  	}
+ 	// @formatter:on
 
 	@InstanceInit
 	public void init() {
@@ -67,15 +68,15 @@ public class Texty3Application extends Application {
 		aboutAction.onActivate(this::onAboutAction);
 		addAction(aboutAction);
 
-        var newWindowAction = new SimpleAction("new-window", null);
-        newWindowAction.onActivate(this::onNewWindowAction);
-        setAccelsForAction("app.new-window", new String[]{"<primary><shift>n"});
-        addAction(newWindowAction);
-        
-        var shortcutsAction = new SimpleAction("keyboard-shortcuts", null);
-        shortcutsAction.onActivate(this::onShortcutsAction);
+		var newWindowAction = new SimpleAction("new-window", null);
+		newWindowAction.onActivate(this::onNewWindowAction);
+		setAccelsForAction("app.new-window", new String[] { "<primary><shift>n" });
+		addAction(newWindowAction);
+
+		var shortcutsAction = new SimpleAction("keyboard-shortcuts", null);
+		shortcutsAction.onActivate(this::onShortcutsAction);
 		addAction(shortcutsAction);
-		
+
 		builder = new GtkBuilder();
 	}
 
@@ -86,9 +87,9 @@ public class Texty3Application extends Application {
 
 	private void onShortcutsAction(Variant variant1) {
 		try {
-	      builder.addFromResource("/texty3/help_overlay.ui");
-	      ((ShortcutsWindow)builder.getObject("help-overlay")).setVisible(true);
-	    } catch (GErrorException ignored) {
-	    }
+			builder.addFromResource("/texty3/help_overlay.ui");
+			((ShortcutsWindow) builder.getObject("help-overlay")).setVisible(true);
+		} catch (GErrorException ignored) {
+		}
 	}
 }

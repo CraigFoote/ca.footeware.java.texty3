@@ -1,12 +1,12 @@
 plugins {
 	id("java")
 	id("application")
-    id("io.github.jwharm.flatpak-gradle-generator") version "1.2.0"
+    id("io.github.jwharm.flatpak-gradle-generator") version "1.4.0"
 }
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(23))
+        languageVersion.set(JavaLanguageVersion.of(24))
     }
 }
 
@@ -68,4 +68,3 @@ tasks.flatpakGradleGenerator {
 //tasks.named("installDist") {
 //    destinationDirectory = file("/opt/texty3")
 //}
-
