@@ -1,7 +1,7 @@
 plugins {
 	id("java")
 	id("application")
-    id("io.github.jwharm.flatpak-gradle-generator") version "1.4.0"
+    id("io.github.jwharm.flatpak-gradle-generator") version "1.5.0"
 }
 
 java {
