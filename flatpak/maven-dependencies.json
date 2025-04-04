@@ -43,322 +43,322 @@
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/cairobindings/cairo/1.18.4.1/cairo-1.18.4.1.jar",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/cairobindings/cairo/1.18.4.1/cairo-1.18.4.1.jar",
     "sha512": "a7230993ea1412b1d811febe2135c22f90df3a35d093944765bbbde27508653df4cb6f80efb977f21c70146c697e30567937e5f272d1205728b6dc3a77e2f4b3",
     "dest": "build/repository/io/github/jwharm/cairobindings/cairo/1.18.4.1",
     "dest-filename": "cairo-1.18.4.1.jar"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/cairobindings/cairo/1.18.4.1/cairo-1.18.4.1.module",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/cairobindings/cairo/1.18.4.1/cairo-1.18.4.1.module",
     "sha512": "f92bb3a1131c65b2085f99128b200c676802a5ef12c4823b8a80f5caf3b549922a466df45b29a38a3ef1b7acbd9012c2289c5c791ff9eabb1d173257407f7794",
     "dest": "build/repository/io/github/jwharm/cairobindings/cairo/1.18.4.1",
     "dest-filename": "cairo-1.18.4.1.module"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/cairobindings/cairo/1.18.4.1/cairo-1.18.4.1.pom",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/cairobindings/cairo/1.18.4.1/cairo-1.18.4.1.pom",
     "sha512": "f987887a516aee07c053d44ec33f38e2460bf5f58025db652c8f0552b878723254ef0553315f7f7e15a84af808c546d93db600bbccde25ade5f73c53776dcb5a",
     "dest": "build/repository/io/github/jwharm/cairobindings/cairo/1.18.4.1",
     "dest-filename": "cairo-1.18.4.1.pom"
   },
   {
     "type": "file",
-    "url": "https://plugins.gradle.org/m2/io/github/jwharm/flatpak-gradle-generator/io.github.jwharm.flatpak-gradle-generator.gradle.plugin/1.4.0/io.github.jwharm.flatpak-gradle-generator.gradle.plugin-1.4.0.pom",
-    "sha512": "a46603dc9e732ceb458c815d1701d32787dd9d4ed444fee59700d702faf11f1e5b009ea626cbd67e3b683b9e461a812998e0e2b67c0576ef1e347a33c3556b49",
-    "dest": "build/repository/io/github/jwharm/flatpak-gradle-generator/io.github.jwharm.flatpak-gradle-generator.gradle.plugin/1.4.0",
-    "dest-filename": "io.github.jwharm.flatpak-gradle-generator.gradle.plugin-1.4.0.pom"
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/flatpak-gradle-generator/io.github.jwharm.flatpak-gradle-generator.gradle.plugin/1.5.0/io.github.jwharm.flatpak-gradle-generator.gradle.plugin-1.5.0.pom",
+    "sha512": "d95ab753c7e295958260ad47da3271089e2e81554eb6bb5ae0acbb2b76dcbbfc8f67088a95b4fca917b882f7c6ccffc6e72a5941312b22f83f7402e3f758ae58",
+    "dest": "build/repository/io/github/jwharm/flatpak-gradle-generator/io.github.jwharm.flatpak-gradle-generator.gradle.plugin/1.5.0",
+    "dest-filename": "io.github.jwharm.flatpak-gradle-generator.gradle.plugin-1.5.0.pom"
   },
   {
     "type": "file",
-    "url": "https://plugins.gradle.org/m2/io/github/jwharm/flatpak-gradle-generator/plugin/1.4.0/plugin-1.4.0.jar",
-    "sha512": "70b0426ac9f3b0a3a2efefc810a73288fcf31658b0065e5c18367bbbea154e27273f5f8a7c42403315543707a1c99bfd491a25f369c8de812fcff2e3da6b50ba",
-    "dest": "build/repository/io/github/jwharm/flatpak-gradle-generator/plugin/1.4.0",
-    "dest-filename": "plugin-1.4.0.jar"
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/flatpak-gradle-generator/plugin/1.5.0/plugin-1.5.0.jar",
+    "sha512": "010a05bdf5a7b0338b921577ce9fbff3f221aff8994926c9c4cd6965cf11047ded07485faeb092b7d2bd6ed1973a7171971940841ba52ea080bb382cffcb1115",
+    "dest": "build/repository/io/github/jwharm/flatpak-gradle-generator/plugin/1.5.0",
+    "dest-filename": "plugin-1.5.0.jar"
   },
   {
     "type": "file",
-    "url": "https://plugins.gradle.org/m2/io/github/jwharm/flatpak-gradle-generator/plugin/1.4.0/plugin-1.4.0.module",
-    "sha512": "c96d11f6718786b7595d6b216cd429d453514fb563d5f55f561c90c8aed00088d9e60cbbe9ddcd72584f7c7e005e75bad09f8e50a6ce2f4be7eefaf0ccf310c3",
-    "dest": "build/repository/io/github/jwharm/flatpak-gradle-generator/plugin/1.4.0",
-    "dest-filename": "plugin-1.4.0.module"
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/flatpak-gradle-generator/plugin/1.5.0/plugin-1.5.0.module",
+    "sha512": "94948fffea8525b0dcaa23099d671a99995a1cef93208a7795d3c6fdc8f68c68420c2f9451211ff112dac15798e22d43f66aeb93fe5e5f4dbf0d5ae1f417ea97",
+    "dest": "build/repository/io/github/jwharm/flatpak-gradle-generator/plugin/1.5.0",
+    "dest-filename": "plugin-1.5.0.module"
   },
   {
     "type": "file",
-    "url": "https://plugins.gradle.org/m2/io/github/jwharm/flatpak-gradle-generator/plugin/1.4.0/plugin-1.4.0.pom",
-    "sha512": "a63f51ee9dd77c3dc3d7d91083a23605523d1e338f7ae5ceb2ce3a5eb7a3f952033dcc8bfaaecffb3fea00dd45d8b45b9f06376b92abd6530eae96394118f2d6",
-    "dest": "build/repository/io/github/jwharm/flatpak-gradle-generator/plugin/1.4.0",
-    "dest-filename": "plugin-1.4.0.pom"
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/flatpak-gradle-generator/plugin/1.5.0/plugin-1.5.0.pom",
+    "sha512": "b090e4a56bfe11148ffa841c6fdb95a8181105365182f6380b3ec38b09d757897e78e087dd92d05d68c2c91f0aa49ce0d9e166aa6bd0b7b92d71a1a73a9ac494",
+    "dest": "build/repository/io/github/jwharm/flatpak-gradle-generator/plugin/1.5.0",
+    "dest-filename": "plugin-1.5.0.pom"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/adw/0.11.2/adw-0.11.2.jar",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/adw/0.11.2/adw-0.11.2.jar",
     "sha512": "70f28124fcb1b06489568f4987172fa5fd2c8888cb9701e302ec2092ef3d55e645d229a32d2d6c6690f1231b14d7d4df5aee52dd24f574d1259d37b89a44794a",
     "dest": "build/repository/io/github/jwharm/javagi/adw/0.11.2",
     "dest-filename": "adw-0.11.2.jar"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/adw/0.11.2/adw-0.11.2.module",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/adw/0.11.2/adw-0.11.2.module",
     "sha512": "a4b878d10276a14981e864e7323396061a1c93a84a2eb92124a4abd20df7252f9b8fdff8c12114fee95b2085bac953c440f6faf0cada66af64c31cb3602c597b",
     "dest": "build/repository/io/github/jwharm/javagi/adw/0.11.2",
     "dest-filename": "adw-0.11.2.module"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/adw/0.11.2/adw-0.11.2.pom",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/adw/0.11.2/adw-0.11.2.pom",
     "sha512": "03bda6f646d9354d395d3c8366da6c2a406446c82df29ca0a5064c48fccaf4616fefe4b772f139c0aef5544457539c96c7858f11682378ac151d4ef42ef4660c",
     "dest": "build/repository/io/github/jwharm/javagi/adw/0.11.2",
     "dest-filename": "adw-0.11.2.pom"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gdk/0.11.2/gdk-0.11.2.jar",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gdk/0.11.2/gdk-0.11.2.jar",
     "sha512": "e3721e88b1f7ab75556314c9eeca8c8fe6d7a11390f5afe7cac641a755a1c9c3a3649371f4a765aac74f0aa2790c8d3f67c286565fbbf4dee70287adab6d742f",
     "dest": "build/repository/io/github/jwharm/javagi/gdk/0.11.2",
     "dest-filename": "gdk-0.11.2.jar"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gdk/0.11.2/gdk-0.11.2.module",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gdk/0.11.2/gdk-0.11.2.module",
     "sha512": "33207ba453a073e887380a60a989bd898ddac531a17717348b12f835dcbaa4e25c9bc2a0c7934ac810f467bae08035e584444288052da42aac6c8fe6b0a4c7cb",
     "dest": "build/repository/io/github/jwharm/javagi/gdk/0.11.2",
     "dest-filename": "gdk-0.11.2.module"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gdk/0.11.2/gdk-0.11.2.pom",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gdk/0.11.2/gdk-0.11.2.pom",
     "sha512": "699e80c1cea3cf336176e210fecb73d2ce7201c5f901a33a5a5ccc4a6053fbc484793db2a7d19eea934cf883f13ace86dc2a667bb860d765d14f66e69facfa37",
     "dest": "build/repository/io/github/jwharm/javagi/gdk/0.11.2",
     "dest-filename": "gdk-0.11.2.pom"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gdkpixbuf/0.11.2/gdkpixbuf-0.11.2.jar",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gdkpixbuf/0.11.2/gdkpixbuf-0.11.2.jar",
     "sha512": "9ca52925dff12e14b6aa5f9ee0ee26802d88e50491cf6e42d5034ee1e1a5a989ee863d481dde83b1dff9dbd0ab2e95e40f031eb109077bd8bcb704247a3a040f",
     "dest": "build/repository/io/github/jwharm/javagi/gdkpixbuf/0.11.2",
     "dest-filename": "gdkpixbuf-0.11.2.jar"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gdkpixbuf/0.11.2/gdkpixbuf-0.11.2.module",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gdkpixbuf/0.11.2/gdkpixbuf-0.11.2.module",
     "sha512": "9d0e76f9d0b17555e7ae873fbf08f5d83a2200d5f166a4ed4a7dd93d36ad1e3675707a4aedee09710e0fcba549cb44ddbc537ad1763c71d3cacd8f15e5a1650f",
     "dest": "build/repository/io/github/jwharm/javagi/gdkpixbuf/0.11.2",
     "dest-filename": "gdkpixbuf-0.11.2.module"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gdkpixbuf/0.11.2/gdkpixbuf-0.11.2.pom",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gdkpixbuf/0.11.2/gdkpixbuf-0.11.2.pom",
     "sha512": "191b543d527b858bca425e4d5e2ff3f428badbae82253ad5ac44c157d35ed1f746344698ba475813c786a6be223ea087fce6e90442df90c6d843001345308944",
     "dest": "build/repository/io/github/jwharm/javagi/gdkpixbuf/0.11.2",
     "dest-filename": "gdkpixbuf-0.11.2.pom"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gio/0.11.2/gio-0.11.2.jar",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gio/0.11.2/gio-0.11.2.jar",
     "sha512": "104668dc15fdfe2728648fd55d026acff41e73785f70bd7a9b8e83c571c3a431f918d42e4c4454691a0db65ad9a52d51090f4edde0058659dc426a4dd3be053a",
     "dest": "build/repository/io/github/jwharm/javagi/gio/0.11.2",
     "dest-filename": "gio-0.11.2.jar"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gio/0.11.2/gio-0.11.2.module",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gio/0.11.2/gio-0.11.2.module",
     "sha512": "691ad1321ef94fdd02f2399bc0cb59b27d47a9ecb2fb2088362a400f471dca54a8079c5fe6e3e5638af750a8387193a5a6ce3885fc3ab82586169c513a2b2473",
     "dest": "build/repository/io/github/jwharm/javagi/gio/0.11.2",
     "dest-filename": "gio-0.11.2.module"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gio/0.11.2/gio-0.11.2.pom",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gio/0.11.2/gio-0.11.2.pom",
     "sha512": "30de4dee4305c133840422d3a3cce2b634c2f80902d031562ca07288b0a028f07c6bb87488403dd76c95ed7416c57cf4f7cb0ca458762cccdb54a8aa9b2dcd8a",
     "dest": "build/repository/io/github/jwharm/javagi/gio/0.11.2",
     "dest-filename": "gio-0.11.2.pom"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/glib/0.11.2/glib-0.11.2.jar",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/glib/0.11.2/glib-0.11.2.jar",
     "sha512": "736b423a1a9b49782659a844c7c97dedf0e6be3a91b4a5eedf7ff828a04c9b8cba6ca3ff86b97327f352e48168c8bb10bb9be96f531e5320fd2651b500962b25",
     "dest": "build/repository/io/github/jwharm/javagi/glib/0.11.2",
     "dest-filename": "glib-0.11.2.jar"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/glib/0.11.2/glib-0.11.2.module",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/glib/0.11.2/glib-0.11.2.module",
     "sha512": "07dec99f821e8ec124ac26b1811c5f4578f165e546a550b61a061093886aea266e74e840891597fdc012155ef0c256370fdb6500647e13a15576caf3f2a05fd1",
     "dest": "build/repository/io/github/jwharm/javagi/glib/0.11.2",
     "dest-filename": "glib-0.11.2.module"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/glib/0.11.2/glib-0.11.2.pom",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/glib/0.11.2/glib-0.11.2.pom",
     "sha512": "771891d17d6c676cfffbfdd7afd5ef7acc972b07088ac3938aa543c85de7e480e4656d927e5948778b6eb61608bfdda4058dd0c20151a5ddf941495a80ade2b9",
     "dest": "build/repository/io/github/jwharm/javagi/glib/0.11.2",
     "dest-filename": "glib-0.11.2.pom"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gmodule/0.11.2/gmodule-0.11.2.jar",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gmodule/0.11.2/gmodule-0.11.2.jar",
     "sha512": "6b4e8ac7a47cfc18ec06eb25266cf424a18a6fd47d4c871ab95bb62fd13233d11552930de6a4db8abeda5282d51d5afa40237b9ff484614ce8a7ab4c1a46f28d",
     "dest": "build/repository/io/github/jwharm/javagi/gmodule/0.11.2",
     "dest-filename": "gmodule-0.11.2.jar"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gmodule/0.11.2/gmodule-0.11.2.module",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gmodule/0.11.2/gmodule-0.11.2.module",
     "sha512": "59d46fbf1606689e958de5a9e5fbd2a5092f4de0623c8bf63e5c7e2697f82db18997a93acd2bcd379e416f38b902a4c9e92728de14da2ea7b5ef5aef03bd5bcc",
     "dest": "build/repository/io/github/jwharm/javagi/gmodule/0.11.2",
     "dest-filename": "gmodule-0.11.2.module"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gmodule/0.11.2/gmodule-0.11.2.pom",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gmodule/0.11.2/gmodule-0.11.2.pom",
     "sha512": "629a110ae3c0ae8ad5f6f6b723ca5a9ee80aa4367abe1b549cfad610fe514fc6db8f90ede3c2bd58cdccf797e1b0c8670f9c87f2a21a5e56dc464dee2ce7c228",
     "dest": "build/repository/io/github/jwharm/javagi/gmodule/0.11.2",
     "dest-filename": "gmodule-0.11.2.pom"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gobject/0.11.2/gobject-0.11.2.jar",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gobject/0.11.2/gobject-0.11.2.jar",
     "sha512": "5ab69957164636ad0ad0431ee8f34942917ec907dc4140c6f3a1310421dd0b1247c13ca04f0e106976134d943f5bb09b0714cfebd6d38522e0fda2d34bb55391",
     "dest": "build/repository/io/github/jwharm/javagi/gobject/0.11.2",
     "dest-filename": "gobject-0.11.2.jar"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gobject/0.11.2/gobject-0.11.2.module",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gobject/0.11.2/gobject-0.11.2.module",
     "sha512": "cfa7e4b69d1fab374ee533f1e3fa1d68f43500ecfca33002d611cbef58f091509f542730f65b286f13aeceddedffc482cb615c48fb74c77a023f978b4b608a17",
     "dest": "build/repository/io/github/jwharm/javagi/gobject/0.11.2",
     "dest-filename": "gobject-0.11.2.module"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gobject/0.11.2/gobject-0.11.2.pom",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gobject/0.11.2/gobject-0.11.2.pom",
     "sha512": "67f28c57bcdbf03feaee3c8e110b49ed9526003ca7d5362ec4ac94a5107a4af36b110a1d5bc02ccbf57bb068229ef4b8ee1916d63979b47457a2aac683f1799b",
     "dest": "build/repository/io/github/jwharm/javagi/gobject/0.11.2",
     "dest-filename": "gobject-0.11.2.pom"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/graphene/0.11.2/graphene-0.11.2.jar",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/graphene/0.11.2/graphene-0.11.2.jar",
     "sha512": "f88aa56aee87e556455ce7f020b91de5bfc9efd3cbd82de54f87158d1982befdcfc13b6fe8df7fc33305251137e53c02f971fb0b47e43c6c803f7e352fd1ffb0",
     "dest": "build/repository/io/github/jwharm/javagi/graphene/0.11.2",
     "dest-filename": "graphene-0.11.2.jar"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/graphene/0.11.2/graphene-0.11.2.module",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/graphene/0.11.2/graphene-0.11.2.module",
     "sha512": "77d7c57423f34fe58e9aa098be572c56f99b7d848eaa46bc189b29b9136e3a0ace09319f745ab46e46350711f45531f62fba58210383da3728293bd271c853ce",
     "dest": "build/repository/io/github/jwharm/javagi/graphene/0.11.2",
     "dest-filename": "graphene-0.11.2.module"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/graphene/0.11.2/graphene-0.11.2.pom",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/graphene/0.11.2/graphene-0.11.2.pom",
     "sha512": "36b59c1903b273869a98c232ac3ec29915f2aa798555a500d38efabc068c22d26a7115cbb8e595afd273430fbe1788a0daba3758c77f4e62ba969d5a1b857b01",
     "dest": "build/repository/io/github/jwharm/javagi/graphene/0.11.2",
     "dest-filename": "graphene-0.11.2.pom"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gsk/0.11.2/gsk-0.11.2.jar",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gsk/0.11.2/gsk-0.11.2.jar",
     "sha512": "f0370f82f3f2eec7d1424866872a4401ea03698c3a72a14999d36b43628d083a07b6e11d1cec8df8c6717cab7aa7528ed28548dee06099f15315c0fbbd22bdff",
     "dest": "build/repository/io/github/jwharm/javagi/gsk/0.11.2",
     "dest-filename": "gsk-0.11.2.jar"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gsk/0.11.2/gsk-0.11.2.module",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gsk/0.11.2/gsk-0.11.2.module",
     "sha512": "23641cf07875aef8f42e4f38e1bca5bfe4bb1d8d46189d8f769a10c236fe76dcfd1299b274c0d75d41a50575be69f835664816c216b8674d172e6ccc92c2c8b4",
     "dest": "build/repository/io/github/jwharm/javagi/gsk/0.11.2",
     "dest-filename": "gsk-0.11.2.module"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gsk/0.11.2/gsk-0.11.2.pom",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gsk/0.11.2/gsk-0.11.2.pom",
     "sha512": "cdc6548f7be554b4d2ef3bde882e43b3e8925f2c50d757a606538f9663fc2e4a72ee5009c71eba8ea147e7188468b31a938ceb519fdc2a435d9b157b8377a0e5",
     "dest": "build/repository/io/github/jwharm/javagi/gsk/0.11.2",
     "dest-filename": "gsk-0.11.2.pom"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gtk/0.11.2/gtk-0.11.2.jar",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gtk/0.11.2/gtk-0.11.2.jar",
     "sha512": "d5f3e380e5107fab31fd001caa955b8231671b80ccd5b19aa6e4b20a0e0639efddb811d7c6cff870d25ca728533fa29b9915a5e1d32ef51a24b06d3fb4d69846",
     "dest": "build/repository/io/github/jwharm/javagi/gtk/0.11.2",
     "dest-filename": "gtk-0.11.2.jar"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gtk/0.11.2/gtk-0.11.2.module",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gtk/0.11.2/gtk-0.11.2.module",
     "sha512": "23d643e3737b9ca61e8e69f4d30b3c00fe327eb2f8d919e692a0565f9cf3d43dc52abf0c23e59da3264d9501304fcf96145ede3b1231f4efd3b66c658027ee14",
     "dest": "build/repository/io/github/jwharm/javagi/gtk/0.11.2",
     "dest-filename": "gtk-0.11.2.module"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/gtk/0.11.2/gtk-0.11.2.pom",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/gtk/0.11.2/gtk-0.11.2.pom",
     "sha512": "4c47670ef7f809f136e8058ea564ccfe15ae368dfa949dfe89027b8c7108f0871bc3d6a4a3f33b84052d40a8060258c86ee49e88b1b3ef4e8febe1002e8a6b09",
     "dest": "build/repository/io/github/jwharm/javagi/gtk/0.11.2",
     "dest-filename": "gtk-0.11.2.pom"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/harfbuzz/0.11.2/harfbuzz-0.11.2.jar",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/harfbuzz/0.11.2/harfbuzz-0.11.2.jar",
     "sha512": "206ed24e6a8b37b2adeb1de1be13f48a8f31ea8b6617f447d565f8bd2e1281f2db89a027ff1363991a7ca247f9e3beac35a30d903c0ad81a535eeb19e510244b",
     "dest": "build/repository/io/github/jwharm/javagi/harfbuzz/0.11.2",
     "dest-filename": "harfbuzz-0.11.2.jar"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/harfbuzz/0.11.2/harfbuzz-0.11.2.module",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/harfbuzz/0.11.2/harfbuzz-0.11.2.module",
     "sha512": "2c176e1485f92a8fc7c6e51b4affbd4967ee2d49702ba1fd77d9800f842b07285c930816f21717ff96c373801bdd27ab469eeae85021bf2c013cbc24adac1317",
     "dest": "build/repository/io/github/jwharm/javagi/harfbuzz/0.11.2",
     "dest-filename": "harfbuzz-0.11.2.module"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/harfbuzz/0.11.2/harfbuzz-0.11.2.pom",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/harfbuzz/0.11.2/harfbuzz-0.11.2.pom",
     "sha512": "b7b9c21f3789e04ccc033d7e1a0e384966a097f98762bf4a23ed82b9aeeb0a1ab2e97ec395a88445cce71ba65fabc719eff58ee361c43410f8da9f9b0f731489",
     "dest": "build/repository/io/github/jwharm/javagi/harfbuzz/0.11.2",
     "dest-filename": "harfbuzz-0.11.2.pom"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/pango/0.11.2/pango-0.11.2.jar",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/pango/0.11.2/pango-0.11.2.jar",
     "sha512": "10c7bdae6f6d1bc7701d1c5fbd28e637415974adf55bb1fa342ac1126246bf43068185ba65248df6b26285cc4136a697d5891e5d5a0b0fd4f8ec5f873db7696d",
     "dest": "build/repository/io/github/jwharm/javagi/pango/0.11.2",
     "dest-filename": "pango-0.11.2.jar"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/pango/0.11.2/pango-0.11.2.module",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/pango/0.11.2/pango-0.11.2.module",
     "sha512": "0bdb2fe6c5480ff43cb461d12cc103739590c8b9e5474411edc19df913d665c2038b5ba33c6e9e87425bf78fc57e4a918bcdab416d8e6c9079db1d521b686323",
     "dest": "build/repository/io/github/jwharm/javagi/pango/0.11.2",
     "dest-filename": "pango-0.11.2.module"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/pango/0.11.2/pango-0.11.2.pom",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/pango/0.11.2/pango-0.11.2.pom",
     "sha512": "e10c7360c154c971416a11f1383124f439bf4f413e77207f572e19376e33659fa9a9c4159e01337dbe5ed96045dbca342291f3de06ece0446f43a32ecad0dd6a",
     "dest": "build/repository/io/github/jwharm/javagi/pango/0.11.2",
     "dest-filename": "pango-0.11.2.pom"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/pangocairo/0.11.2/pangocairo-0.11.2.jar",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/pangocairo/0.11.2/pangocairo-0.11.2.jar",
     "sha512": "462956b06c40a61ac28175ac8470de37503098593a875abb3788660fbf1568210eb265c4bbf890e715855ce3f16be7dd9aabcb7d6a0e42df935db61530869d51",
     "dest": "build/repository/io/github/jwharm/javagi/pangocairo/0.11.2",
     "dest-filename": "pangocairo-0.11.2.jar"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/pangocairo/0.11.2/pangocairo-0.11.2.module",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/pangocairo/0.11.2/pangocairo-0.11.2.module",
     "sha512": "cb2b59a36f7ce39f6dd3788f3fbf9f23b86281ed8a5c3a9d234e8a781264f5a6da62cd15cf6d3c109c735ef47d10fa9122042a1b2b3e365e9ef244756617be94",
     "dest": "build/repository/io/github/jwharm/javagi/pangocairo/0.11.2",
     "dest-filename": "pangocairo-0.11.2.module"
   },
   {
     "type": "file",
-    "url": "https://repo.maven.apache.org/maven2/io/github/jwharm/javagi/pangocairo/0.11.2/pangocairo-0.11.2.pom",
+    "url": "https://plugins.gradle.org/m2/io/github/jwharm/javagi/pangocairo/0.11.2/pangocairo-0.11.2.pom",
     "sha512": "100742aa315f477b299d1078f87cd45e95919e6a0547fdf6655aa37b02b55edbcdc023ff203f7bf2163519dad54686d65cb32550ac89ef0430a98fb0926e4c53",
     "dest": "build/repository/io/github/jwharm/javagi/pangocairo/0.11.2",
     "dest-filename": "pangocairo-0.11.2.pom"

@@ -1,0 +1,43 @@
+{
+    "app-id" : "ca.footeware.java.texty3",
+    "runtime" : "org.freedesktop.Platform",
+    "runtime-version" : "24.08",
+    "sdk" : "org.freedesktop.Sdk",
+    "sdk-extensions" : [
+        "org.freedesktop.Sdk.Extension.openjdk"
+    ],
+    "build-options" : {
+        "append-path": "/usr/lib/sdk/openjdk/gradle/bin:/app/jre/bin"
+    },
+    "command" : "/app/texty3/bin/texty3",
+    "finish-args" : [
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--device=dri",
+        "--share=ipc",
+        "--share=network",
+        "--filesystem=home",
+        "--env=PATH=/app/jre/bin:/usr/bin"
+    ],
+    "cleanup" : [
+        "/include",
+        "/lib/pkgconfig",
+        "*.a"
+    ],
+    "modules" : [
+        {
+            "name" : "openjdk",
+            "buildsystem" : "simple",
+            "build-commands" : [ "/usr/lib/sdk/openjdk/install.sh" ]
+        },
+        {
+            "name" : "texty3",
+            "buildsystem" : "simple",
+            "build-commands" : [ "gradle installDist" ],
+            "sources" : [
+                { "type" : "dir", "path" : ".." },
+                "maven-dependencies.json"
+            ]
+        }
+    ]
+}
