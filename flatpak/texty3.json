@@ -1,13 +1,17 @@
 {
     "app-id" : "ca.footeware.java.texty3",
-    "runtime" : "org.freedesktop.Platform",
-    "runtime-version" : "24.08",
-    "sdk" : "org.freedesktop.Sdk",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "48",
+    "sdk" : "org.gnome.Sdk",
     "sdk-extensions" : [
         "org.freedesktop.Sdk.Extension.openjdk"
     ],
     "build-options" : {
-        "append-path": "/usr/lib/sdk/openjdk/gradle/bin:/app/jre/bin"
+        "append-path": "/usr/lib/sdk/openjdk/gradle/bin:/app/jre/bin",
+        "env": {
+            "GRADLE_USER_HOME": "/run/build/texty3/gradle",
+            "JAVA_HOME": "/usr/lib/sdk/openjdk"
+        }
     },
     "command" : "/app/texty3/bin/texty3",
     "finish-args" : [
