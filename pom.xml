@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>ca.footeware.java</groupId>
+	<artifactId>texty3</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>22</maven.compiler.source>
+		<maven.compiler.target>22</maven.compiler.target>
+	</properties>
+	
+	<dependencies>
+		<dependency>
+		  	<groupId>io.github.jwharm.javagi</groupId>
+		  	<artifactId>adw</artifactId>
+		  	<version>0.11.2</version>
+		</dependency>
+	</dependencies>
+	
+	<pluginRepositories>
+		<pluginRepository>
+    		<id>oss-snapshots</id>
+    		<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    		<snapshots>
+		        <enabled>true</enabled>
+		    </snapshots>
+    		<releases>
+        		<enabled>true</enabled>
+    		</releases>
+		</pluginRepository>
+	</pluginRepositories>	
+
+	<build>
+		<resources>
+  			<resource>
+      			<directory>src/main/resources</directory>
+  			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>uk.co.bithatch</groupId>
+				<artifactId>maven-flatpak-plugin</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+				<configuration>
+					<mainClass>texty3.Main</mainClass>
+					<modules>false</modules>
+					<manifest>
+						<appId>ca.footeware.java.texty3</appId>
+						<sdkExtensions>
+							<sdkExtension>org.freedesktop.Sdk.Extension.openjdk</sdkExtension>
+						</sdkExtensions>
+						<finishArgs>
+							<finishArg>--socket=session-bus</finishArg>
+							<finishArg>--socket=x11</finishArg>
+							<finishArg>--socket=ssh-auth</finishArg>
+							<finishArg>--device=dri</finishArg>
+							<finishArg>--share=network</finishArg>
+							<finishArg>--share=ipc</finishArg>
+							<finishArg>--filesystem=home</finishArg>
+						</finishArgs>
+					</manifest>
+					<iconFile>src/flatpak/icons/icon.svg</iconFile>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<name>ca.footeware.java.texty3</name>
+	<description>A simple text editor written with Java-GI bindings as a flatpak.</description>
+	<url>https://footeware.ca</url>
+	<licenses>
+		<license>
+			<name>The GNU General Public License</name>
+			<distribution>repo</distribution>
+			<url>https://www.gnu.org/licenses/gpl-3.0.txt</url>
+			<comments>The GNU General Public License</comments>
+		</license>
+	</licenses>
+</project>

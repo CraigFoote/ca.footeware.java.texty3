@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Texty3
-Comment=A simple text editor
-Type=Application
-Exec=texty3
-Icon=ca.footeware.java.texty3
-Terminal=false
-Categories=Utility;TextEditor;GTK;

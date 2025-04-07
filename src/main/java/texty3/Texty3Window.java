@@ -60,7 +60,7 @@ public class Texty3Window extends ApplicationWindow {
 
 	private File file;
 	private Settings settings;
-	private CssProvider provider = new CssProvider();;
+	private CssProvider provider = new CssProvider();
 	@GtkChild(name = "text_view")
 	public TextView textView;
 	@GtkChild(name = "toast_overlay")
@@ -225,7 +225,8 @@ public class Texty3Window extends ApplicationWindow {
 					saveFile();
 				}
 			} catch (GErrorException ignored) {
-			} // user clicked cancel
+				// user clicked cancel
+			} 
 		});
 	}
 
@@ -263,7 +264,8 @@ public class Texty3Window extends ApplicationWindow {
 						loadFile();
 					}
 				} catch (GErrorException ignored) {
-				} // user clicked cancel
+					// user clicked cancel
+				} 
 			});
 		}
 	}
@@ -297,7 +299,8 @@ public class Texty3Window extends ApplicationWindow {
 						saveFile();
 					}
 				} catch (GErrorException ignored) {
-				} // user clicked cancel
+					// user clicked cancel
+				} 
 			});
 		}
 	}
