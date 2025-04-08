@@ -12,7 +12,13 @@ Along the way you may get some errors about missing flatpak runtimes. These can 
 
 ## Building
 
-- If you're using eclipse, use the `texty3-BUILD.launch` run configuration. Or run `mvn clean package uk.co.bithatch:maven-flatpak-plugin:generate`. This populates the *target* folder, including an *app* folder where we'll do some more work. The *app* folder should look like this:
+- If you're using eclipse, use the `texty3-BUILD.launch` run configuration. Or run:
+
+  ```
+  mvn clean package uk.co.bithatch:maven-flatpak-plugin:generate
+  ```
+
+  This populates the *target* folder, including an *app* folder where we'll do some more work. The *app* folder should look like this:
 
 ```
 ❯ tree ./app
@@ -27,7 +33,6 @@ Along the way you may get some errors about missing flatpak runtimes. These can 
 
 - Edit `ca.footeware.java.texty3.metainfo.xml`  to add `<categories><category>Utility</category></categories>` before the closing `</component>`, i.e. `...</url><categories><category>Utility</category></categories></component>`. 
 
-
 - Edit `ca.footeware.java.texty3.yml` to change *runtime-version* to "24.08" and to add these two lines to the end:
 
 ```
@@ -35,9 +40,9 @@ Along the way you may get some errors about missing flatpak runtimes. These can 
 - "--env=JAVA_HOME=/app/jre"
 ```
 
+*Note* The code is compiled with Java 22 (the minimum for Java-GI) and is packaged in a container with flatpak runtime version 24.08 that includes the openjdk-23.0.2 JRE. Hence, `/app/jre/bin/java`.
 
-- Running as root for the next command seems to be required. This will leave some items in your *apps* folder with root permission so you'll need to `sudo rm -r ./app` if you need to clean the project. Anyway, from *app* folder, run the following to build the flatpak and install it locally.
-
+- Running as root for the next command seems to be required. This will leave some items in your *apps* folder owned by root so you'll need to `sudo rm -r ./app` if you need to clean the project. Anyway, from *app* folder, run the following to build the flatpak and install it locally.
 
 ```
 sudo flatpak-builder --force-clean --verbose --install build-dir ca.footeware.java.texty3.yml
@@ -63,10 +68,9 @@ This may take a long time to come back with the error I'm getting:
 java.lang.UnsatisfiedLinkError: no libgtk-4.so.1 in java.library.path: :/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib
 ```
 
-So it seems the texty3 flatpak container is missing its dependency on GTK libraries.
+So it seems the texty3 flatpak container is missing its dependency on Gtk libraries.
 
 And that's as far as I've gotten! I've seen some talk of depending on libs in the host but that seems to be breaking most of the point of flatpaks - container sandboxing. I'll keep hacking on it and hopefully update this page. If you're reading this and have any ideas please open an issue and describe it. Open source rocks.
-
 
 ## Debugging
 
@@ -85,5 +89,11 @@ To remove this fine piece of work, use Warehouse or run:
 ```
 flatpak uninstall --delete-data ca.footeware.java.texty3
 ```
+
+## TODO
+
+- Provide Gtk dependencies.
+- Build to *texty3.flatpak* rather than installing, the same way Gnome Builder builds.
+- Release *texty3.flatpak* as installable on clients.
 
 ***
