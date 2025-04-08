@@ -64,20 +64,28 @@
 						</finishArgs>
 					</manifest>
 					<iconFile>src/flatpak/icons/icon.svg</iconFile>
+<!--					<categories>-->
+<!--						<category>Utility</category>-->
+<!--					</categories>-->
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 	
-	<name>ca.footeware.java.texty3</name>
-	<description>A simple text editor written with Java-GI bindings as a flatpak.</description>
-	<url>https://footeware.ca</url>
+	<name>texty3</name>
+	
+	<description>A minimal text editor written with Java-GI bindings as a flatpak. Third in a series - the first in C, the second in python-GTK and now this one in Java-GI.</description>
+	
+	<url type="homepage">https://github.com/CraigFoote/ca.footeware.java.texty3</url>
+	
 	<licenses>
 		<license>
-			<name>The GNU General Public License</name>
+			<name>FSFAP</name>
 			<distribution>repo</distribution>
-			<url>https://www.gnu.org/licenses/gpl-3.0.txt</url>
-			<comments>The GNU General Public License</comments>
+			<url>https://fedoraproject.org/wiki/Licensing/FSFAP#License_Text</url>
+			<comments>FSF All Permissive License</comments>
 		</license>
 	</licenses>
+	
+	
 </project>
