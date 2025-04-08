@@ -41,7 +41,11 @@ Along the way you may get some errors about missing flatpak runtimes. These can 
 - Running as root for the next command seems to be required. This will leave some items in your *apps* folder with root permission so you'll need to `sudo rm -r ./app` if you need to clean the project. Anyway, from *app* folder, run the following to build the flatpak and install it locally.
 
 
+<<<<<<< HEAD
 ```
+=======
+`````
+>>>>>>> branch 'master' of https://github.com/CraigFoote/ca.footeware.java.texty3.git
 sudo flatpak-builder --force-clean --verbose --install build-dir ca.footeware.java.texty3.yml
 ```
 
