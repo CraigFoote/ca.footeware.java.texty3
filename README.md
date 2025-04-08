@@ -1,8 +1,6 @@
 # texty3
 
-A minimal text editor, third in a series - the first in [C](https://github.com/CraigFoote/ca.footeware.c.texty), the second using [python-GTK](https://github.com/CraigFoote/ca.footeware.py.texty2) and now this one written in Java and using [Java-GI](https://jwharm.github.io/java-gi/) GTK/ADW bindings. Each is packaged as a flatpak.
-
-This version uses the [maven-flatpak-plugin](https://github.com/bithatch/maven-flatpak-plugin) to create flatpak artifacts.
+A minimal text editor, third in a series - the first in [C](https://github.com/CraigFoote/ca.footeware.c.texty), the second using [python-Gtk](https://github.com/CraigFoote/ca.footeware.py.texty2) and now this one written in Java and using [Java-GI](https://jwharm.github.io/java-gi/) Gtk/Adw bindings. Each is packaged as a flatpak. The first two were developed in GNOME Builder and this one I developed in eclipse and uses the [maven-flatpak-plugin](https://github.com/bithatch/maven-flatpak-plugin) to create flatpak artifacts.
 
 ## Prerequisites
 
