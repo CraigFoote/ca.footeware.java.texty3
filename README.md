@@ -47,7 +47,9 @@ sudo flatpak-builder --force-clean --verbose --install build-dir ca.footeware.ja
 
 If you get errors, running this can provide better explanations. Some *pom.xml* tags are used but I think I've got the required ones.
 
-`flatpak run --command=flatpak-builder-lint org.flatpak.Builder appstream ca.footeware.java.texty3.metainfo.xml`
+```
+flatpak run --command=flatpak-builder-lint org.flatpak.Builder appstream ca.footeware.java.texty3.metainfo.xml
+```
 
 ## Running
 
