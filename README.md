@@ -1,22 +1,24 @@
 # texty3
 
-A minimal text editor, third in a series - the first in [C](https://github.com/CraigFoote/ca.footeware.c.texty), the second using [python-Gtk](https://github.com/CraigFoote/ca.footeware.py.texty2) and now this one written in Java and using [Java-GI](https://jwharm.github.io/java-gi/) Gtk/Adw bindings. Each is packaged as a flatpak. The first two were developed in GNOME Builder and this one I developed in eclipse using the [maven-flatpak-plugin](https://github.com/bithatch/maven-flatpak-plugin) to create flatpak artifacts.
+A minimal text editor, third in a series - the first in [C](https://github.com/CraigFoote/ca.footeware.c.texty), the second using [python-Gtk](https://github.com/CraigFoote/ca.footeware.py.texty2) and now this one written in Java and using [Java-GI](https://jwharm.github.io/java-gi/) Gtk/Adw bindings. Each is packaged as a flatpak. The first two were developed in GNOME Builder and this one I developed in eclipse using the [uk.co.bithatch:maven-flatpak-plugin](https://github.com/bithatch/maven-flatpak-plugin) to create flatpak artifacts.
+
+The code is compiled with Java 22 (the minimum for Java-GI) and is packaged in a container with flatpak runtime *org.gnome.Platform* and *org.gnome.Sdk* 48 that includes the openjdk-23.0.2 JRE that runs the application.
 
 ## Prerequisites
 
-You'll need [flatpak](https://flathub.org/setup) installed.
+You'll need [flatpak](https://flathub.org/setup) and a Java JDK >= 22 installed.
 
 Along the way you may get some errors about missing flatpak runtimes. These can be fixed by installing them via, e.g.:
 
-`flatpak install flathub org.freedesktop.Platform`
+`flatpak install flathub org.gnome.Platform`
 
 ## Building
 
 - If you're using eclipse, use the `texty3-BUILD.launch` run configuration. Or run:
 
-  ```
-  mvn clean package uk.co.bithatch:maven-flatpak-plugin:generate
-  ```
+```
+mvn clean package uk.co.bithatch:maven-flatpak-plugin:generate
+```
 
   This populates the *target* folder, including an *app* folder where we'll do some more work. The *app* folder should look like this:
 
@@ -31,18 +33,29 @@ Along the way you may get some errors about missing flatpak runtimes. These can 
 └── texty3.jar
 ```
 
-- Edit `ca.footeware.java.texty3.metainfo.xml`  to add `<categories><category>Utility</category></categories>` before the closing `</component>`, i.e. `...</url><categories><category>Utility</category></categories></component>`. 
+- Edit `ca.footeware.java.texty3.desktop`  to add `Categories=Utility;`
 
-- Edit `ca.footeware.java.texty3.yml` to change *runtime-version* to "24.08" and to add these two lines to the end:
+
+- Edit `ca.footeware.java.texty3.yml` to change:
 
 ```
-- "--env=PATH=/app/jre/bin:/app/bin:/usr/bin"
-- "--env=JAVA_HOME=/app/jre"
+runtime: "org.freedesktop.Platform"
+runtime-version: "22.08"
+sdk: "org.freedesktop.Sdk"
 ```
 
-*Note* The code is compiled with Java 22 (the minimum for Java-GI) and is packaged in a container with flatpak runtime version 24.08 that includes the openjdk-23.0.2 JRE. Hence, `/app/jre/bin/java`.
+...to:
 
-- Running as root for the next command seems to be required. This will leave some items in your *apps* folder owned by root so you'll need to `sudo rm -r ./app` if you need to clean the project. Anyway, from *app* folder, run the following to build the flatpak and install it locally.
+```
+runtime: "org.gnome.Platform"
+runtime-version: "48"
+sdk: "org.gnome.Sdk"
+```
+
+
+- Running as root for the next command seems to be required. This will leave some items in your *apps* folder owned by root so you'll need to `sudo rm -r ./app` if you need to clean the project.
+
+Anyway, from *app* folder, run the following to build the flatpak and install it locally (globally?).
 
 ```
 sudo flatpak-builder --force-clean --verbose --install build-dir ca.footeware.java.texty3.yml
@@ -65,12 +78,13 @@ flatpak run ca.footeware.java.texty3
 This may take a long time to come back with the error I'm getting:
 
 ```
-java.lang.UnsatisfiedLinkError: no libgtk-4.so.1 in java.library.path: :/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib
+GLib-GIO-ERROR **: 13:43:41.272: Settings schema 'ca.footeware.java.texty3' is not installed
 ```
 
-So it seems the texty3 flatpak container is missing its dependency on Gtk libraries.
+The texty3 application is missing its dependency on its GSettings schema.
 
-And that's as far as I've gotten! I've seen some talk of depending on libs in the host but that seems to be breaking most of the point of flatpaks - container sandboxing. I'll keep hacking on it and hopefully update this page. If you're reading this and have any ideas please open an issue and describe it. Open source rocks.
+And that's as far as I've gotten!  
+If you're reading this and have any ideas please open an issue and describe it. Open source rocks.
 
 ## Debugging
 
@@ -92,7 +106,8 @@ flatpak uninstall --delete-data ca.footeware.java.texty3
 
 ## TODO
 
-- Provide Gtk dependencies.
+- Provide gsettings schema.
+- Install using `--user`.
 - Build to *texty3.flatpak* rather than installing, the same way Gnome Builder builds.
 - Release *texty3.flatpak* as installable on clients.
 

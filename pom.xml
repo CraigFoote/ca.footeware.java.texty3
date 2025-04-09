@@ -61,6 +61,8 @@
 							<finishArg>--share=network</finishArg>
 							<finishArg>--share=ipc</finishArg>
 							<finishArg>--filesystem=home</finishArg>
+							<finishArg>--env=PATH=/app/jre/bin:/app/bin:/usr/bin</finishArg>
+							<finishArg>--env=JAVA_HOME=/app/jre</finishArg>
 						</finishArgs>
 					</manifest>
 					<iconFile>src/flatpak/icons/icon.svg</iconFile>
