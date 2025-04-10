@@ -33,13 +33,10 @@ This populates the *target* folder, including an *app* folder with artifacts nee
 └── texty3.jar
 ```
 
-
-Running as root for the next command seems to be required. This will leave some items in your *apps* folder owned by root so you'll need to `sudo rm -r ./app` if you need to clean the project.
-
-Anyway, from *app* folder, run the following to build the flatpak and install it locally (globally?).
+From the *app* folder, run the following to build the flatpak and install it locally.
 
 ```
-sudo flatpak-builder --force-clean --verbose --install build-dir ca.footeware.java.texty3.yml
+flatpak-builder --force-clean --user --verbose --install build-dir ca.footeware.java.texty3.yml
 ```
 
 If you get errors, running this can provide better explanations. Some *pom.xml* tags are used but I think I've got the required ones.
@@ -89,7 +86,6 @@ flatpak uninstall --delete-data ca.footeware.java.texty3
 
 - Get GPG signing of artifacts working and deploy to sonatype central snapshots.
 - Provide gsettings schema.
-- Build without sudo.(`--user`?).
 - Build to *texty3.flatpak* rather than installing, the same way Gnome Builder builds.
 - Release *texty3.flatpak* as installable on clients.
 
