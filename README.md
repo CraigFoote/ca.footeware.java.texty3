@@ -1,6 +1,6 @@
 # texty3
 
-A minimal text editor, third in a series - the first in [C](https://github.com/CraigFoote/ca.footeware.c.texty), the second using [python-Gtk](https://github.com/CraigFoote/ca.footeware.py.texty2) and now this one written in Java and using [Java-GI](https://jwharm.github.io/java-gi/) Gtk/Adw bindings. Each is packaged as a flatpak. The first two were developed in GNOME Builder and this one I developed in eclipse using the [uk.co.bithatch:maven-flatpak-plugin](https://github.com/bithatch/maven-flatpak-plugin) to create flatpak artifacts.
+A minimal text editor, third in a series - the first in [C](https://github.com/CraigFoote/ca.footeware.c.texty), the second using [python-Gtk](https://github.com/CraigFoote/ca.footeware.py.texty2) and now this one written in Java and using [Java-GI](https://jwharm.github.io/java-gi/) Gtk/Adw bindings. Each is packaged as a flatpak. The first two were developed in GNOME Builder and this one I developed in eclipse using a [fork](https://github.com/CraigFoote/flatpak-maven-plugin) of the [uk.co.bithatch:maven-flatpak-plugin](https://github.com/bithatch/maven-flatpak-plugin) to create flatpak artifacts. The plugin is built locally for now until I get it in Sonatype snapshots like the original did.
 
 The code is compiled with Java 22 (the minimum for Java-GI) and is packaged in a container with flatpak runtime *org.gnome.Platform* and *org.gnome.Sdk* 48 that includes the openjdk-23.0.2 JRE that runs the application.
 
@@ -14,13 +14,13 @@ Along the way you may get some errors about missing flatpak runtimes. These can 
 
 ## Building
 
-- If you're using eclipse, use the `texty3-BUILD.launch` run configuration. Or run:
+If you're using eclipse, use the `texty3-BUILD.launch` run configuration. Or run:
 
 ```
-mvn clean package uk.co.bithatch:maven-flatpak-plugin:generate
+mvn clean package ca.footeware:flatpak-maven-plugin:generate
 ```
 
-  This populates the *target* folder, including an *app* folder where we'll do some more work. The *app* folder should look like this:
+This populates the *target* folder, including an *app* folder with artifacts needed for a flatpak-builder call. The *app* folder should look like this:
 
 ```
 ❯ tree ./app
@@ -33,27 +33,8 @@ mvn clean package uk.co.bithatch:maven-flatpak-plugin:generate
 └── texty3.jar
 ```
 
-- Edit `ca.footeware.java.texty3.desktop`  to add `Categories=Utility;`
 
-
-- Edit `ca.footeware.java.texty3.yml` to change:
-
-```
-runtime: "org.freedesktop.Platform"
-runtime-version: "22.08"
-sdk: "org.freedesktop.Sdk"
-```
-
-...to:
-
-```
-runtime: "org.gnome.Platform"
-runtime-version: "48"
-sdk: "org.gnome.Sdk"
-```
-
-
-- Running as root for the next command seems to be required. This will leave some items in your *apps* folder owned by root so you'll need to `sudo rm -r ./app` if you need to clean the project.
+Running as root for the next command seems to be required. This will leave some items in your *apps* folder owned by root so you'll need to `sudo rm -r ./app` if you need to clean the project.
 
 Anyway, from *app* folder, run the following to build the flatpak and install it locally (globally?).
 
@@ -106,9 +87,10 @@ flatpak uninstall --delete-data ca.footeware.java.texty3
 
 ## TODO
 
+- Get GPG signing of artifacts working and deploy to sonatype central snapshots.
 - Provide gsettings schema.
-- Install using `--user`.
+- Build without sudo.(`--user`?).
 - Build to *texty3.flatpak* rather than installing, the same way Gnome Builder builds.
 - Release *texty3.flatpak* as installable on clients.
 
-***
+---
