@@ -9,8 +9,7 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>22</maven.compiler.source>
-		<maven.compiler.target>22</maven.compiler.target>
+		<maven.compiler.release>22</maven.compiler.release>
 	</properties>
 	
 	<dependencies>
@@ -23,8 +22,8 @@
 	
 	<pluginRepositories>
 		<pluginRepository>
-    		<id>oss-snapshots</id>
-    		<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    		<id>central-snapshots</id>
+    		<url>https://central.sonatype.com/repository/maven-snapshots/</url>
     		<snapshots>
 		        <enabled>true</enabled>
 		    </snapshots>
@@ -58,7 +57,7 @@
 						</sdkExtensions>
 						<finishArgs>
 							<finishArg>--socket=session-bus</finishArg>
-							<finishArg>--socket=x11</finishArg>
+							<finishArg>--socket=wayland</finishArg>
 							<finishArg>--socket=ssh-auth</finishArg>
 							<finishArg>--device=dri</finishArg>
 							<finishArg>--share=network</finishArg>
@@ -75,7 +74,7 @@
 		</plugins>
 	</build>
 	
-	<name>${project.artifactId}</name>
+	<name>${artifactId}</name>
 	
 	<description>A minimal text editor written with Java-GI bindings as a flatpak. Third in a series - the first in C, the second in python-GTK and now this one in Java-GI.</description>
 	
@@ -88,7 +87,5 @@
 			<url>https://fedoraproject.org/wiki/Licensing/FSFAP#License_Text</url>
 			<comments>FSF All Permissive License</comments>
 		</license>
-	</licenses>
-	
-	
+	</licenses>	
 </project>
