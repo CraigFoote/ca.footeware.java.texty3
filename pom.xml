@@ -50,7 +50,7 @@
 					<runtime>org.gnome.Platform</runtime>
 					<runtimeVersion>48</runtimeVersion>
 					<sdk>org.gnome.Sdk</sdk>
-					<!--<gschema>src/main/resources/ca.footeware.java.texty3.gschema.xml</gschema>-->
+					<gschema>src/main/resources/ca.footeware.java.texty3.gschema.xml</gschema>
 					<manifest>
 						<appId>ca.footeware.java.texty3</appId>
 						<sdkExtensions>
