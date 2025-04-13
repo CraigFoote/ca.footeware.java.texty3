@@ -50,6 +50,7 @@
 					<runtime>org.gnome.Platform</runtime>
 					<runtimeVersion>48</runtimeVersion>
 					<sdk>org.gnome.Sdk</sdk>
+					<!--<gschema>src/main/resources/ca.footeware.java.texty3.gschema.xml</gschema>-->
 					<manifest>
 						<appId>ca.footeware.java.texty3</appId>
 						<sdkExtensions>
@@ -65,6 +66,7 @@
 							<finishArg>--filesystem=home</finishArg>
 							<finishArg>--env=PATH=/app/jre/bin:/app/bin:/usr/bin</finishArg>
 							<finishArg>--env=JAVA_HOME=/app/jre</finishArg>
+							<finishArg>--env=GSETTINGS_SCHEMA_DIR=/app/share/glib-2.0/schemas</finishArg>
 						</finishArgs>
 					</manifest>
 					<iconFile>src/flatpak/icons/icon.svg</iconFile>
@@ -74,7 +76,7 @@
 		</plugins>
 	</build>
 	
-	<name>${artifactId}</name>
+	<name>${project.artifactId}</name>
 	
 	<description>A minimal text editor written with Java-GI bindings as a flatpak. Third in a series - the first in C, the second in python-GTK and now this one in Java-GI.</description>
 	
