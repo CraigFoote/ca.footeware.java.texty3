@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema id="texty3" path="/ca/footeware/java/texty3/">
+  <schema id="ca.footeware.java.texty3" path="/ca/footeware/java/texty3/">
     <key name="wrap-mode" type="b">
       <default>true</default>
       <summary>Wrap mode</summary>
