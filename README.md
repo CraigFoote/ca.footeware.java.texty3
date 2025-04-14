@@ -52,17 +52,14 @@ To run the installed flatpak, use:
 ```
 flatpak run ca.footeware.java.texty3
 ```
+Or use the launcher that should now be in your apps view.
 
-This may take a long time to come back with the error I'm getting:
+## Export to .flatpak file
 
-```
-GLib-GIO-ERROR **: 13:43:41.272: Settings schema 'ca.footeware.java.texty3' is not installed
-```
+This can be double-clicked to install in GNOME Software.
 
-The texty3 application is missing its dependency on its GSettings schema.
-
-And that's as far as I've gotten!  
-If you're reading this and have any ideas please open an issue and describe it. Open source rocks.
+1. flatpak-builder --repo=repo --force-clean build-dir ca.footeware.java.texty3.yml
+1. flatpak build-bundle repo ca.footeware.java.texty3.flatpak ca.footeware.java.texty3  
 
 ## Debugging
 
@@ -84,8 +81,9 @@ flatpak uninstall --delete-data ca.footeware.java.texty3
 
 ## TODO
 
-- Provide gsettings schema.
-- Build to *texty3.flatpak* rather than installing, the same way Gnome Builder builds.
+- Code tweaks.
 - Release *texty3.flatpak* as installable on clients.
+- Consider flatpakref.
+- Consider integrating flatpak-builder calls.
 
 ---
