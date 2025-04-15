@@ -5,7 +5,7 @@
 
 	<groupId>ca.footeware.java</groupId>
 	<artifactId>texty3</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -83,10 +83,10 @@
 	
 	<licenses>
 		<license>
-			<name>FSFAP</name>
+			<name>Apache-2.0</name>
 			<distribution>repo</distribution>
-			<url>https://fedoraproject.org/wiki/Licensing/FSFAP#License_Text</url>
-			<comments>FSF All Permissive License</comments>
+			<url>https://spdx.org/licenses/Apache-2.0.html</url>
+			<comments>Apache License 2.0</comments>
 		</license>
 	</licenses>	
 </project>

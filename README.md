@@ -1,6 +1,6 @@
 # texty3
 
-A minimal text editor, third in a series - the first in [C](https://github.com/CraigFoote/ca.footeware.c.texty), the second using [python-Gtk](https://github.com/CraigFoote/ca.footeware.py.texty2) and now this one written in Java and using [Java-GI](https://jwharm.github.io/java-gi/) Gtk/Adw bindings. Each is packaged as a flatpak. The first two were developed in GNOME Builder and this one I developed in eclipse using a [fork](https://github.com/CraigFoote/flatpak-maven-plugin) of the [uk.co.bithatch:maven-flatpak-plugin](https://github.com/bithatch/maven-flatpak-plugin) to create flatpak artifacts.
+A minimal text editor, third in a series - the first in [C](https://github.com/CraigFoote/ca.footeware.c.texty), the second using [python-Gtk](https://github.com/CraigFoote/ca.footeware.py.texty2) and now this one written in Java and using [Java-GI](https://jwharm.github.io/java-gi/) Gtk/Adw bindings. Each is packaged as a flatpak. The first two were developed in GNOME Builder and this one I developed in eclipse using a modified [fork](https://github.com/CraigFoote/flatpak-maven-plugin) of the [uk.co.bithatch:maven-flatpak-plugin](https://github.com/bithatch/maven-flatpak-plugin) to create flatpak artifacts.
 
 The code is compiled with Java 22 (the minimum for Java-GI) and is packaged in a container with flatpak runtime *org.gnome.Platform* and *org.gnome.Sdk* 48 that includes the openjdk-23.0.2 JRE that runs the application.
 
@@ -52,18 +52,21 @@ To run the installed flatpak, use:
 ```
 flatpak run ca.footeware.java.texty3
 ```
-Or use the launcher that should now be in your apps view.
+Or use the launcher that should now be in your apps view. Or use Warehouse.
 
 ## Export to .flatpak file
 
 This can be double-clicked to install in GNOME Software.
 
-1. flatpak-builder --repo=repo --force-clean build-dir ca.footeware.java.texty3.yml
-1. flatpak build-bundle repo ca.footeware.java.texty3.flatpak ca.footeware.java.texty3  
+1. `flatpak-builder --repo=repo --force-clean build-dir ca.footeware.java.texty3.yml`
+1. `flatpak build-bundle repo ca.footeware.java.texty3.flatpak ca.footeware.java.texty3`  
 
 ## Debugging
 
-[Warehouse](https://flathub.org/apps/io.github.flattool.Warehouse) is a great program to manage flatpaks, including verifying installation and removal.
+[Warehouse](https://flathub.org/apps/io.github.flattool.Warehouse) is a great program to manage flatpaks, including verifying installation, running and removal.
+
+Note that the `flatpak-builder --force-clean --user --verbose --install build-dir ca.footeware.java.texty3.yml` command as described above installs the app with *user* scope while installing the .flatpak build will install in *system* scope. This needs reconciliation.
+
 
 A couple commands I've found that might help:
 
@@ -83,7 +86,6 @@ flatpak uninstall --delete-data ca.footeware.java.texty3
 
 - Code tweaks.
 - Release *texty3.flatpak* as installable on clients.
-- Consider flatpakref.
 - Consider integrating flatpak-builder calls.
 
 ---
