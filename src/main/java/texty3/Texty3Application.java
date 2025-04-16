@@ -1,6 +1,8 @@
 package texty3;
 
+import java.io.IOException;
 import java.lang.foreign.MemorySegment;
+import java.util.Properties;
 
 import org.gnome.adw.AboutDialog;
 import org.gnome.adw.Application;
@@ -50,12 +52,20 @@ public class Texty3Application extends Application {
 
 	// @formatter:off
 	private void onAboutAction(Variant parameter) {
+		String version = "unknown";
+		Properties properties = new Properties();
+		try {
+			properties.load(this.getClass().getResourceAsStream("/project.properties"));
+			version = (String) properties.get("version");
+		} catch (IOException e) {
+			// ignore and use initial value
+		}
         var about = AboutDialog.builder()
             .setApplicationName("texty3")
             .setApplicationIcon("texty3")
             .setDeveloperName("Another fine mess by Footeware.ca")
             .setDevelopers(new String[]{"Craig Foote"})
-            .setVersion("1.0.2")
+            .setVersion(version)
             .setCopyright("©2024 Craig Foote")
             .build();
         about.present(this.getActiveWindow());
