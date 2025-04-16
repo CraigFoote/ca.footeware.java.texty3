@@ -81,7 +81,7 @@
 
 	<url type="homepage">https://github.com/CraigFoote/ca.footeware.java.texty3</url>
 
-	<!--See -->
+	<!--See https://spdx.org/licenses/-->
 	<licenses>
 		<!--must be included -->
 		<license>
@@ -98,4 +98,20 @@
 			<comments>metadata</comments>
 		</license>
 	</licenses>
+	
+	<developers>
+		<developer>
+			<!--must be reverse DNS notation-->
+			<id>ca.footeware.craigfoote</id> <!--required-->
+			<name>Craig Foote</name> <!--required-->
+			<email>CraigFoote@gmail.com</email>
+			<organization>Footeware</organization>
+			<organizationUrl>https://footeware.ca</organizationUrl>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+			<timezone>America/Toronto</timezone>
+		</developer>
+	</developers>
 </project>
