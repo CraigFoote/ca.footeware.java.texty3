@@ -11,33 +11,33 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.release>22</maven.compiler.release>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
-		  	<groupId>io.github.jwharm.javagi</groupId>
-		  	<artifactId>adw</artifactId>
-		  	<version>0.11.2</version>
+			<groupId>io.github.jwharm.javagi</groupId>
+			<artifactId>adw</artifactId>
+			<version>0.11.2</version>
 		</dependency>
 	</dependencies>
-	
+
 	<pluginRepositories>
 		<pluginRepository>
-    		<id>central-snapshots</id>
-    		<url>https://central.sonatype.com/repository/maven-snapshots/</url>
-    		<snapshots>
-		        <enabled>true</enabled>
-		    </snapshots>
-    		<releases>
-        		<enabled>true</enabled>
-    		</releases>
+			<id>central-snapshots</id>
+			<url>https://central.sonatype.com/repository/maven-snapshots/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
 		</pluginRepository>
-	</pluginRepositories>	
+	</pluginRepositories>
 
 	<build>
 		<resources>
-  			<resource>
-      			<directory>src/main/resources</directory>
-  			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
 		</resources>
 		<plugins>
 			<plugin>
@@ -74,19 +74,28 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<name>${project.artifactId}</name>
-	
+
 	<description>A minimal text editor written with Java-GI bindings as a flatpak. Third in a series - the first in C, the second in python-GTK and now this one in Java-GI.</description>
-	
+
 	<url type="homepage">https://github.com/CraigFoote/ca.footeware.java.texty3</url>
-	
+
+	<!--See -->
 	<licenses>
+		<!--must be included -->
 		<license>
 			<name>Apache-2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
 			<distribution>repo</distribution>
-			<url>https://spdx.org/licenses/Apache-2.0.html</url>
-			<comments>Apache License 2.0</comments>
+			<comments>project</comments>
 		</license>
-	</licenses>	
+		<!--defaults to FSFAP if omitted -->
+		<license>
+			<name>FSFAP</name>
+			<url>https://spdx.org/licenses/FSFAP.html</url>
+			<distribution>repo</distribution>
+			<comments>metadata</comments>
+		</license>
+	</licenses>
 </project>
