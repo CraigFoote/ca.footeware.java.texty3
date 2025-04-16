@@ -5,7 +5,7 @@
 
 	<groupId>ca.footeware.java</groupId>
 	<artifactId>texty3</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -43,7 +43,7 @@
 			<plugin>
 				<groupId>ca.footeware</groupId>
 				<artifactId>flatpak-maven-plugin</artifactId>
-				<version>1.0.0-SNAPSHOT</version>
+				<version>1.0.1-SNAPSHOT</version>
 				<configuration>
 					<mainClass>texty3.Main</mainClass>
 					<modules>false</modules>
@@ -79,7 +79,7 @@
 
 	<description>A minimal text editor written with Java-GI bindings as a flatpak. Third in a series - the first in C, the second in python-GTK and now this one in Java-GI.</description>
 
-	<url type="homepage">https://github.com/CraigFoote/ca.footeware.java.texty3</url>
+	<url>https://github.com/CraigFoote/ca.footeware.java.texty3</url>
 
 	<!--See https://spdx.org/licenses/-->
 	<licenses>
@@ -99,19 +99,19 @@
 		</license>
 	</licenses>
 	
+	<!--must be included -->
 	<developers>
 		<developer>
 			<!--must be reverse DNS notation-->
 			<id>ca.footeware.craigfoote</id> <!--required-->
 			<name>Craig Foote</name> <!--required-->
-			<email>CraigFoote@gmail.com</email>
-			<organization>Footeware</organization>
-			<organizationUrl>https://footeware.ca</organizationUrl>
-			<roles>
-				<role>architect</role>
+			<email>CraigFoote@gmail.com</email> <!--optional-->
+			<organization>Footeware</organization> <!--optional-->
+			<organizationUrl>https://footeware.ca</organizationUrl> <!--optional-->
+			<roles><!--optional-->
 				<role>developer</role>
 			</roles>
-			<timezone>America/Toronto</timezone>
+			<timezone>America/Toronto</timezone> <!--optional-->
 		</developer>
 	</developers>
 </project>

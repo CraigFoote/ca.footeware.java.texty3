@@ -55,7 +55,7 @@ public class Texty3Application extends Application {
             .setApplicationIcon("texty3")
             .setDeveloperName("Another fine mess by Footeware.ca")
             .setDevelopers(new String[]{"Craig Foote"})
-            .setVersion("1.0.0")
+            .setVersion("1.0.2")
             .setCopyright("©2024 Craig Foote")
             .build();
         about.present(this.getActiveWindow());
