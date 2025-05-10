@@ -13,7 +13,7 @@ import org.gnome.glib.Variant;
 import org.gnome.gobject.GObject;
 import org.gnome.gtk.GtkBuilder;
 import org.gnome.gtk.IconTheme;
-import org.gnome.gtk.ShortcutsWindow;
+import org.gnome.gtk.Window;
 
 import io.github.jwharm.javagi.base.GErrorException;
 import io.github.jwharm.javagi.gobject.annotations.InstanceInit;
@@ -23,7 +23,7 @@ import io.github.jwharm.javagi.gtk.types.TemplateTypes;
 @RegisteredType(name = "Texty3Application")
 public class Texty3Application extends Application {
 
-	public static Type gtype = TemplateTypes.register(Texty3Application.class);
+	public static final Type gtype = TemplateTypes.register(Texty3Application.class);
 	private GtkBuilder builder;
 
 	public Texty3Application(MemorySegment address) {
@@ -98,8 +98,9 @@ public class Texty3Application extends Application {
 	private void onShortcutsAction(Variant variant1) {
 		try {
 			builder.addFromResource("/texty3/help_overlay.ui");
-			((ShortcutsWindow) builder.getObject("help-overlay")).setVisible(true);
-		} catch (GErrorException ignored) {
+			((Window) builder.getObject("help-overlay")).setVisible(true);
+		} catch (GErrorException ignored) 
+			// TODO log
 		}
 	}
 }

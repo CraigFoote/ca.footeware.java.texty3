@@ -43,7 +43,7 @@ import io.github.jwharm.javagi.gtk.types.TemplateTypes;
 @GtkTemplate(name = "Texty3Window", ui = "/texty3/window.ui")
 public class Texty3Window extends ApplicationWindow {
 
-	public static Type gtype = TemplateTypes.register(Texty3Window.class);
+	public static final Type gtype = TemplateTypes.register(Texty3Window.class);
 	private static Application app;
 
 	/**
@@ -226,7 +226,7 @@ public class Texty3Window extends ApplicationWindow {
 				}
 			} catch (GErrorException ignored) {
 				// user clicked cancel
-			} 
+			}
 		});
 	}
 
@@ -265,7 +265,7 @@ public class Texty3Window extends ApplicationWindow {
 					}
 				} catch (GErrorException ignored) {
 					// user clicked cancel
-				} 
+				}
 			});
 		}
 	}
@@ -300,7 +300,7 @@ public class Texty3Window extends ApplicationWindow {
 					}
 				} catch (GErrorException ignored) {
 					// user clicked cancel
-				} 
+				}
 			});
 		}
 	}

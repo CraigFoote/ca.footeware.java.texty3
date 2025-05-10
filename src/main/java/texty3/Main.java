@@ -3,7 +3,6 @@ package texty3;
 import java.io.IOException;
 
 import org.gnome.gio.Resource;
-import org.gnome.glib.Bytes;
 
 import io.github.jwharm.javagi.base.GErrorException;
 
@@ -22,7 +21,7 @@ public class Main {
 	 */
 	public static void main(String[] args) throws GErrorException, IOException {
 		byte[] bytes = Main.class.getResourceAsStream("/texty3.gresource").readAllBytes();
-		var resources = Resource.fromData(new Bytes(bytes));
+		var resources = Resource.fromData(bytes);
 		resources.resourcesRegister();
 
 		var app = Texty3Application.create();
