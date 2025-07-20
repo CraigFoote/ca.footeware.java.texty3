@@ -57,7 +57,7 @@ public class Texty3Application extends Application {
 		try {
 			properties.load(this.getClass().getResourceAsStream("/project.properties"));
 			version = (String) properties.get("version");
-		} catch (IOException e) {
+		} catch (IOException _) {
 			// ignore and use initial value
 		}
         var about = AboutDialog.builder()
@@ -99,7 +99,7 @@ public class Texty3Application extends Application {
 		try {
 			builder.addFromResource("/texty3/help_overlay.ui");
 			((Window) builder.getObject("help-overlay")).setVisible(true);
-		} catch (GErrorException ignored) 
+		} catch (GErrorException _) {
 			// TODO log
 		}
 	}

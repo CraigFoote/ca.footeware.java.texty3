@@ -132,7 +132,7 @@ public class Texty3Window extends ApplicationWindow {
 		// Font Size action
 		var fontSizeAction = SimpleAction.stateful("set-font-size", new VariantType("i"),
 				new Variant("i", settings.getInt("font-size")));
-		fontSizeAction.onActivate((SimpleAction.ActivateCallback) parameter -> onFontSizeAction(parameter));
+		fontSizeAction.onActivate((SimpleAction.ActivateCallback) this::onFontSizeAction);
 		// no shortcut, add to window
 		addAction(fontSizeAction);
 		// fire once to set font-size as per settings
@@ -200,7 +200,7 @@ public class Texty3Window extends ApplicationWindow {
 					if (file != null) {
 						loadFile();
 					}
-				} catch (GErrorException ignored) {
+				} catch (GErrorException _) {
 					// user clicked cancel
 				}
 			});
@@ -224,7 +224,7 @@ public class Texty3Window extends ApplicationWindow {
 					file.create(new HashSet<>(), null);
 					saveFile();
 				}
-			} catch (GErrorException ignored) {
+			} catch (GErrorException _) {
 				// user clicked cancel
 			}
 		});
@@ -263,7 +263,7 @@ public class Texty3Window extends ApplicationWindow {
 					if (file != null) {
 						loadFile();
 					}
-				} catch (GErrorException ignored) {
+				} catch (GErrorException _) {
 					// user clicked cancel
 				}
 			});
@@ -298,7 +298,7 @@ public class Texty3Window extends ApplicationWindow {
 					if (file != null) {
 						saveFile();
 					}
-				} catch (GErrorException ignored) {
+				} catch (GErrorException _) {
 					// user clicked cancel
 				}
 			});
