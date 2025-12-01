@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package texty3;
 
@@ -43,8 +43,8 @@ import io.github.jwharm.javagi.gtk.types.TemplateTypes;
 @GtkTemplate(name = "Texty3Window", ui = "/texty3/window.ui")
 public class Texty3Window extends ApplicationWindow {
 
-	public static final Type gtype = TemplateTypes.register(Texty3Window.class);
 	private static Application app;
+	public static final Type gtype = TemplateTypes.register(Texty3Window.class);
 
 	/**
 	 * Constructor.
@@ -59,8 +59,8 @@ public class Texty3Window extends ApplicationWindow {
 	}
 
 	private File file;
-	private Settings settings;
 	private CssProvider provider = new CssProvider();
+	private Settings settings;
 	@GtkChild(name = "text_view")
 	public TextView textView;
 	@GtkChild(name = "toast_overlay")
@@ -87,7 +87,7 @@ public class Texty3Window extends ApplicationWindow {
 		// set window sized based on last resize
 		int width = settings.getInt("window-width");
 		int height = settings.getInt("window-height");
-		setSizeRequest(width, height);
+		setDefaultSize(width, height);
 
 		// connect to window size change signals
 		onNotify("default-width", _ -> onWindowSizeChange());
